@@ -1,5 +1,7 @@
 package com.ozalp.training.business.impls;
 
+import com.ozalp.auth.business.services.UserProfileService;
+import com.ozalp.auth.models.entities.UserProfile;
 import com.ozalp.training.business.dtos.requests.CreateCoachingAssignmentRequest;
 import com.ozalp.training.business.services.CoachingAssignmentService;
 import com.ozalp.training.dataAccess.CoachingAssignmentRepository;
@@ -14,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CoachingAssignmentImpl implements CoachingAssignmentService {
 
     private final CoachingAssignmentRepository repository;
-//    private final UserProfileClient userProfileClient;
+    private final UserProfileService userProfileService;
 
     @Override
     public CoachingAssignment findById(int id) {
@@ -37,10 +39,9 @@ public class CoachingAssignmentImpl implements CoachingAssignmentService {
     @Override
     @Transactional
     public void create(CreateCoachingAssignmentRequest request) {
-//        UserProfile athlete = userProfileClient.getProfileDetail(request.getAthleteUserProfileId());
-//        UserProfile coach = userProfileClient.getProfileDetail(request.getCoachUserProfileId());
-//        CoachingAssignment coachingAssignment = new CoachingAssignment(athlete.getId(), coach.getId());
-//        repository.save(coachingAssignment);
-        return; // update
+        UserProfile athlete = userProfileService.findById(request.getAthleteUserProfileId());
+        UserProfile coach = userProfileService.findById(request.getCoachUserProfileId());
+        CoachingAssignment coachingAssignment = new CoachingAssignment(athlete.getId(), coach.getId());
+        repository.save(coachingAssignment);
     }
 }

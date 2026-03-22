@@ -1,10 +1,10 @@
 package com.ozalp.membership.business.mappers;
 
+import com.ozalp.auth.models.entities.UserProfile;
 import com.ozalp.membership.business.dtos.requests.CreateMembershipRequest;
 import com.ozalp.membership.business.dtos.responses.MembershipResponse;
-import com.ozalp.membership.business.dtos.responses.Organization;
-import com.ozalp.membership.business.dtos.responses.UserProfile;
 import com.ozalp.membership.models.entities.Membership;
+import com.ozalp.organization.models.entities.Organization;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

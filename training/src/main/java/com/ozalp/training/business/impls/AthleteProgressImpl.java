@@ -1,5 +1,7 @@
 package com.ozalp.training.business.impls;
 
+import com.ozalp.organization.business.services.OrganizationService;
+import com.ozalp.organization.models.entities.Organization;
 import com.ozalp.training.business.dtos.requests.CreateAthleteProgressRequest;
 import com.ozalp.training.business.dtos.responses.AthleteProgressResponse;
 import com.ozalp.training.business.mappers.AthleteProgressMapper;
@@ -22,7 +24,7 @@ public class AthleteProgressImpl implements AthleteProgressService {
     private final AthleteProgressRepository repository;
     private final AthleteProgressMapper mapper;
     private final TrainingItemTaskService trainingItemTaskService;
-//    private final OrganizationClient organizationClient; // update
+    private final OrganizationService organizationService;
 
     @Override
     public AthleteProgress findById(int id) {
@@ -44,10 +46,10 @@ public class AthleteProgressImpl implements AthleteProgressService {
 
     @Override
     public AthleteProgressResponse create(CreateAthleteProgressRequest request) {
-//        Organization organization = organizationClient.getOrganizationDetail(request.getOrganizationId());
+        Organization organization = organizationService.findById(request.getOrganizationId());
         TrainingItemTask trainingItemTask = trainingItemTaskService.findById(request.getTrainingItemId());
         AthleteProgress athleteProgress = mapper.toEntity(request);
-//        athleteProgress.setOrganizationId(organization.getId()); // update
+        athleteProgress.setOrganizationId(organization.getId());
         athleteProgress.setTrainingItemTask(trainingItemTask);
         athleteProgress.setPointsEarned(trainingItemTask.getPoint());
         return mapper.toResponse(repository.save(athleteProgress));

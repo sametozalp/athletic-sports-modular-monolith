@@ -1,8 +1,8 @@
 package com.ozalp.training.business.mappers;
 
+import com.ozalp.auth.models.entities.UserProfile;
 import com.ozalp.training.business.dtos.requests.CreateTrainingProgramRequest;
 import com.ozalp.training.business.dtos.responses.TrainingProgramResponse;
-import com.ozalp.training.business.dtos.responses.UserProfile;
 import com.ozalp.training.models.entities.TrainingProgram;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

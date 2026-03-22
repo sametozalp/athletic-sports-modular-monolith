@@ -1,8 +1,8 @@
 package com.ozalp.organization.business.mappers;
 
+import com.ozalp.auth.models.entities.UserProfile;
 import com.ozalp.organization.business.dtos.requests.CreateOrganizationRequest;
 import com.ozalp.organization.business.dtos.responses.OrganizationResponse;
-import com.ozalp.organization.business.dtos.responses.UserProfile;
 import com.ozalp.organization.models.entities.Organization;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -1,5 +1,9 @@
 package com.ozalp.training.business.impls;
 
+import com.ozalp.auth.business.services.UserProfileService;
+import com.ozalp.auth.models.entities.UserProfile;
+import com.ozalp.core.utils.consts.ApiParams;
+import com.ozalp.core.utils.consts.EventConst;
 import com.ozalp.training.business.dtos.requests.CreateTrainingProgramRequest;
 import com.ozalp.training.business.dtos.responses.TrainingProgramResponse;
 import com.ozalp.training.business.mappers.TrainingProgramMapper;
@@ -17,8 +21,7 @@ public class TrainingProgramImpl implements TrainingProgramService {
 
     private final TrainingProgramRepository repository;
     private final TrainingProgramMapper mapper;
-//    private final UserProfileClient userProfileClient;
-//    private final KafkaTemplate<String, TrainingProgramCreatedEvent> kafkaTemplate; // update
+    private final UserProfileService userProfileService;
 
     @Override
     public TrainingProgram findById(int id) {
@@ -41,14 +44,13 @@ public class TrainingProgramImpl implements TrainingProgramService {
     @Override
     @Transactional
     public TrainingProgramResponse create(CreateTrainingProgramRequest request) {
-//        UserProfile athlete = userProfileClient.getProfileDetail(request.getAthleteUserProfileId());
-//        UserProfile coach = userProfileClient.getProfileDetail(request.getCoachUserProfileId());
-//
-//        TrainingProgram trainingProgram = mapper.toEntity(request);
-//        trainingProgram.setAthleteUserProfileId(athlete.getId());
-//        trainingProgram.setCoachUserProfileId(coach.getId());
-//        kafkaTemplate.send(EventConst.Topics.CREATED_TRAINING_PROGRAM, new TrainingProgramCreatedEvent(athlete.getEmail(), trainingProgram.getId()));
-//        return mapper.toResponse(repository.save(trainingProgram), athlete, coach);
-        return null; // update
+        UserProfile athlete = userProfileService.findById(request.getAthleteUserProfileId());
+        UserProfile coach = userProfileService.findById(request.getCoachUserProfileId());
+
+        TrainingProgram trainingProgram = mapper.toEntity(request);
+        trainingProgram.setAthleteUserProfileId(athlete.getId());
+        trainingProgram.setCoachUserProfileId(coach.getId());
+//        kafkaTemplate.send(EventConst.Topics.CREATED_TRAINING_PROGRAM, new TrainingProgramCreatedEvent(athlete.getEmail(), trainingProgram.getId())); // update
+        return mapper.toResponse(repository.save(trainingProgram), athlete, coach);
     }
 }

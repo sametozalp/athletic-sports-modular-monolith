@@ -1,5 +1,7 @@
 package com.ozalp.organization.business.impls;
 
+import com.ozalp.auth.business.services.UserProfileService;
+import com.ozalp.auth.models.entities.UserProfile;
 import com.ozalp.organization.business.dtos.requests.CreateOrganizationRequest;
 import com.ozalp.organization.business.dtos.responses.OrganizationResponse;
 import com.ozalp.organization.business.mappers.OrganizationMapper;
@@ -16,8 +18,7 @@ public class OrganizationImpl implements OrganizationService {
 
     private final OrganizationRepository repository;
     private final OrganizationMapper mapper;
-//    private final UserProfileClient userProfileClient;
-//    private final KafkaTemplate<String, OrganizationCreatedEvent> kafkaTemplate; // update
+    private final UserProfileService userProfileService;
 
     @Override
     public Organization findById(int id) {
@@ -39,20 +40,18 @@ public class OrganizationImpl implements OrganizationService {
 
     @Override
     public OrganizationResponse create(CreateOrganizationRequest request) {
-//        UserProfile owner = userProfileClient.getProfileDetail(request.getOwnerUserProfileId());
-//        Organization organization = mapper.toEntity(request);
-//        organization.setOwnerUserProfileId(owner.getId());
-//
-//        kafkaTemplate.send(EventConst.Topics.CREATED_ORGANIZATION, new OrganizationCreatedEvent(owner.getEmail(), organization.getName()));
-//        return mapper.toResponse(repository.save(organization), owner);
-        return null; // update
+        UserProfile owner = userProfileService.findById(request.getOwnerUserProfileId());
+        Organization organization = mapper.toEntity(request);
+        organization.setOwnerUserProfileId(owner.getId());
+
+//        kafkaTemplate.send(EventConst.Topics.CREATED_ORGANIZATION, new OrganizationCreatedEvent(owner.getEmail(), organization.getName())); // update
+        return mapper.toResponse(repository.save(organization), owner);
     }
 
     @Override
     public OrganizationResponse getOrganizationDetail(int id) {
-//        Organization organization = repository.findById(id).orElseThrow();
-//        UserProfile owner = userProfileClient.getProfileDetail(organization.getOwnerUserProfileId());
-//        return mapper.toResponse(organization, owner);
-        return null; // update
+        Organization organization = repository.findById(id).orElseThrow();
+        UserProfile owner = userProfileService.findById(organization.getOwnerUserProfileId());
+        return mapper.toResponse(organization, owner);
     }
 }

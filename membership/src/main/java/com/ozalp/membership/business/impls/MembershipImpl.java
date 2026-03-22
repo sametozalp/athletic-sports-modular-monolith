@@ -1,13 +1,15 @@
 package com.ozalp.membership.business.impls;
 
+import com.ozalp.auth.business.services.UserProfileService;
+import com.ozalp.auth.models.entities.UserProfile;
 import com.ozalp.membership.business.dtos.requests.CreateMembershipRequest;
 import com.ozalp.membership.business.dtos.responses.MembershipResponse;
-import com.ozalp.membership.business.dtos.responses.Organization;
-import com.ozalp.membership.business.dtos.responses.UserProfile;
 import com.ozalp.membership.business.mappers.MembershipMapper;
 import com.ozalp.membership.business.services.MembershipService;
 import com.ozalp.membership.dataAccess.MembershipRepository;
 import com.ozalp.membership.models.entities.Membership;
+import com.ozalp.organization.business.services.OrganizationService;
+import com.ozalp.organization.models.entities.Organization;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,9 +20,8 @@ public class MembershipImpl implements MembershipService {
 
     private final MembershipRepository repository;
     private final MembershipMapper mapper;
-//    private final OrganizationClient organizationClient;
-//    private final UserProfileClient userProfileClient;
-//    private final KafkaTemplate<String, MembershipCreatedEvent> kafkaTemplate; // update
+    private final OrganizationService organizationService;
+    private final UserProfileService userProfileService;
 
     @Override
     public Membership findById(int id) {
@@ -42,15 +43,14 @@ public class MembershipImpl implements MembershipService {
 
     @Override
     public MembershipResponse create(CreateMembershipRequest request) {
-//        Organization organization = organizationClient.getOrganizationDetail(request.getOrganizationId());
-//        UserProfile userProfile = userProfileClient.getProfileDetail(request.getUserProfileId());
-//
-//        Membership membership = mapper.toEntity(request);
-//        membership.setOrganizationId(organization.getId());
-//        membership.setUserProfileId(userProfile.getId());
-//
-//        kafkaTemplate.send(EventConst.Topics.CREATED_MEMBERSHIP, new MembershipCreatedEvent(userProfile.getEmail(), organization.getName()));
-//        return  mapper.toResponse(repository.save(membership), organization, userProfile);
-        return null; // update
+        Organization organization = organizationService.findById(request.getOrganizationId());
+        UserProfile userProfile = userProfileService.findById(request.getUserProfileId());
+
+        Membership membership = mapper.toEntity(request);
+        membership.setOrganizationId(organization.getId());
+        membership.setUserProfileId(userProfile.getId());
+
+//        kafkaTemplate.send(EventConst.Topics.CREATED_MEMBERSHIP, new MembershipCreatedEvent(userProfile.getEmail(), organization.getName())); // update
+        return mapper.toResponse(repository.save(membership), organization, userProfile);
     }
 }
