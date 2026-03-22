@@ -1,0 +1,21 @@
+package com.ozalp.membership.business.dtos.responses;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+public class MembershipResponse {
+
+    private int id;
+
+    private UserProfile userProfile;
+
+    private Organization organization;
+
+    private LocalDateTime joined_at;
+
+    private LocalDateTime left_at;
+}
