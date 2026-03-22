@@ -1,0 +1,26 @@
+package com.ozalp.training.controllers;
+
+import com.ozalp.core.utils.consts.ApiConst;
+import com.ozalp.core.utils.consts.ApiParams;
+import com.ozalp.training.business.dtos.requests.CreateAthleteProgressRequest;
+import com.ozalp.training.business.services.AthleteProgressService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(ApiConst.ApiPath.ATHLETE_PROGRESS)
+@RequiredArgsConstructor
+public class AthleteProgressController {
+
+    private final AthleteProgressService athleteProgressService;
+
+    @PostMapping(ApiParams.AthleteProgress.CREATE)
+    ResponseEntity<?> create(@RequestBody @Valid CreateAthleteProgressRequest request) {
+        return ResponseEntity.ok(athleteProgressService.create(request));
+    }
+}
