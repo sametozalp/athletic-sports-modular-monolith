@@ -16,5 +16,6 @@ public interface UserOrganizationMapper {
     @Mapping(target = "id", source = "membershipRequest.id")
     @Mapping(target = "organization", source = "organization")
     @Mapping(target = "userProfile", source = "userProfile")
+    @Mapping(target = "status", source = "membershipRequest.status")
     MembershipRequestResponse toResponse(MembershipRequest membershipRequest, Organization organization, UserProfile userProfile);
 }

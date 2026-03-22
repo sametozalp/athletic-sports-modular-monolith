@@ -23,6 +23,7 @@
 		<module>organization</module>
 		<module>healthy-eating-tip</module>
 		<module>motivation-sentence</module>
+		<module>mail</module>
 		<module>app</module>
 	</modules>
 
