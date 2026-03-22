@@ -16,12 +16,12 @@ public class HealthyEatingTipController {
 
     private final HealthyEatingTipService healthyEatingTipService;
 
-    @PostMapping(ApiParams.HealthyEatingTip.CREATE)
+    @PostMapping(ApiParams.Base.CREATE)
     ResponseEntity<?> create(@RequestBody @Valid CreateHealthyEatingTipRequest request) {
         return ResponseEntity.ok(healthyEatingTipService.create(request));
     }
 
-    @GetMapping(ApiParams.HealthyEatingTip.RANDOM)
+    @GetMapping(ApiParams.Base.RANDOM)
     ResponseEntity<?> getRandom() {
         return ResponseEntity.ok(healthyEatingTipService.getRandomTip());
     }

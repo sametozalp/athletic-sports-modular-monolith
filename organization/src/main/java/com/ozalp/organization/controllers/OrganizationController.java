@@ -16,12 +16,12 @@ public class OrganizationController {
 
     private final OrganizationService organizationService;
 
-    @PostMapping(ApiParams.Organization.CREATE)
+    @PostMapping(ApiParams.Base.CREATE)
     ResponseEntity<?> create(@RequestBody @Valid CreateOrganizationRequest request) {
         return ResponseEntity.ok(organizationService.create(request));
     }
 
-    @GetMapping(ApiParams.Organization.GET_ORGANIZATION_DETAIL)
+    @GetMapping(ApiParams.Base.DETAIL)
     ResponseEntity<?> getOrganizationDetail(@PathVariable int id) {
         return ResponseEntity.ok(organizationService.getOrganizationDetail(id));
     }

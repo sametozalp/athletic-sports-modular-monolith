@@ -5,7 +5,6 @@ public final class ApiConst {
     private final static String API = "/api";
 
     private final static class VERSIONS {
-
         public final static String V1 = "/v1";
     }
 

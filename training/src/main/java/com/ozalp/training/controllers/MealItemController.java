@@ -19,7 +19,7 @@ public class MealItemController {
 
     private final MealItemService mealItemService;
 
-    @PostMapping(ApiParams.MealItemTask.CREATE)
+    @PostMapping(ApiParams.Base.CREATE)
     ResponseEntity<?> create(@RequestBody @Valid CreateMealItemTaskRequest request) {
         return ResponseEntity.ok(mealItemService.create(request));
     }

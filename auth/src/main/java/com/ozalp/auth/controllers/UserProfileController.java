@@ -16,12 +16,12 @@ public class UserProfileController {
 
     private final UserProfileService userProfileService;
 
-    @PostMapping(ApiParams.UserProfile.UPDATE)
+    @PostMapping(ApiParams.Base.UPDATE)
     ResponseEntity<?> update(@RequestBody @Valid UpdateProfileRequest request) {
         return ResponseEntity.ok(userProfileService.updateProfile(request));
     }
 
-    @GetMapping(ApiParams.UserProfile.GET_PROFILE_DETAIL)
+    @GetMapping(ApiParams.Base.DETAIL)
     ResponseEntity<?> findById(@PathVariable int id) {
         return ResponseEntity.ok(userProfileService.getProfileDetail(id));
     }

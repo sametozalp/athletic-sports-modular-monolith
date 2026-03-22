@@ -16,12 +16,12 @@ public class MotivationSentenceController {
 
     private final MotivationSentenceService motivationSentenceService;
 
-    @PostMapping(ApiParams.MotivationSentence.CREATE)
+    @PostMapping(ApiParams.Base.CREATE)
     ResponseEntity<?> create(@RequestBody @Valid CreateMotivationSentenceRequest request) {
         return ResponseEntity.ok(motivationSentenceService.create(request));
     }
 
-    @GetMapping(ApiParams.MotivationSentence.RANDOM)
+    @GetMapping(ApiParams.Base.RANDOM)
     ResponseEntity<?> getRandom() {
         return ResponseEntity.ok(motivationSentenceService.getRandomSentence());
     }

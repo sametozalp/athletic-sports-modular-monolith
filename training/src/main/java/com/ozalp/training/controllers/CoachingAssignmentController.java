@@ -17,13 +17,13 @@ public class CoachingAssignmentController {
 
     private final CoachingAssignmentService coachingAssignmentService;
 
-    @PostMapping(ApiParams.CoachingAssignment.CREATE)
+    @PostMapping(ApiParams.Base.CREATE)
     ResponseEntity<?> create(@RequestBody @Valid CreateCoachingAssignmentRequest request) {
         coachingAssignmentService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body("");
     }
 
-    @DeleteMapping(ApiParams.CoachingAssignment.DELETE)
+    @DeleteMapping(ApiParams.Base.DELETE)
     ResponseEntity<?> delete(@PathVariable int id) {
         coachingAssignmentService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("");

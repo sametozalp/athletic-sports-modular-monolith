@@ -16,7 +16,7 @@ public class TrainingItemController {
 
     private final TrainingItemTaskService trainingItemTaskService;
 
-    @PostMapping(ApiParams.TrainingItem.GET_ALL)
+    @PostMapping(ApiParams.Base.ALL)
     ResponseEntity<?> getAll() {
         return ResponseEntity.ok(trainingItemTaskService.getAll());
     }

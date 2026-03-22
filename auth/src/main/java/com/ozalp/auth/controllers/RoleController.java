@@ -19,7 +19,7 @@ public class RoleController {
 
     private final RoleService roleService;
 
-    @PostMapping(ApiParams.Role.CREATE)
+    @PostMapping(ApiParams.Base.CREATE)
     ResponseEntity<?> create(@RequestBody @Valid CreateRoleRequest request) {
         return ResponseEntity.ok(roleService.create(request));
     }
