@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AuthImpl implements AuthService {
@@ -51,5 +53,19 @@ public class AuthImpl implements AuthService {
         Auth saved = repository.save(reqAuth);
         // update kafkaTemplate.send(EventConst.Topics.CREATED_USER_PROFILE, new UserCreatedEvent(saved.getEmail(), saved.getUsername()));
         return mapper.toResponse(saved);
+    }
+
+    @Override
+    public void createRootAdmin() {
+        Optional<Auth> admin = repository.findByUsername("admin");
+        if (!admin.isPresent()) {
+            Auth auth = new Auth();
+            auth.setEmail("admin@gmail.com");
+            auth.setUsername("admin");
+            auth.setPassword("123456");
+            UserProfile userProfile = new UserProfile();
+            auth.setUserProfile(userProfile);
+            repository.save(auth);
+        }
     }
 }

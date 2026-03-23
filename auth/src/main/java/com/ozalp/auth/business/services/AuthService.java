@@ -8,4 +8,6 @@ import com.ozalp.core.services.BaseService;
 public interface AuthService extends BaseService<Auth> {
 
     AuthResponse register(RegisterRequest request);
+
+    void createRootAdmin();
 }
