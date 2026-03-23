@@ -6,33 +6,20 @@ import com.ozalp.auth.business.mappers.RoleMapper;
 import com.ozalp.auth.business.services.RoleService;
 import com.ozalp.auth.dataAccess.RoleRepository;
 import com.ozalp.auth.models.entities.Role;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+import com.ozalp.core.managers.BaseImpl;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
-public class RoleImpl implements RoleService {
+public class RoleImpl extends BaseImpl<Role> implements RoleService {
 
     private final RoleRepository repository;
     private final RoleMapper mapper;
 
-    @Override
-    public Role findById(int id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Role not found"));
-    }
-
-    @Override
-    public Role save(Role role) {
-        return repository.save(role);
-    }
-
-    @Override
-    public void delete(int id) {
-        Role role = findById(id);
-        role.markAsDelete();
-        repository.save(role);
+    public RoleImpl(JpaRepository<Role, Integer> baseRepository, RoleRepository repository, RoleMapper mapper) {
+        super(baseRepository);
+        this.repository = repository;
+        this.mapper = mapper;
     }
 
     @Override

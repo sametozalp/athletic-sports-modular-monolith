@@ -2,38 +2,25 @@ package com.ozalp.training.business.impls;
 
 import com.ozalp.auth.business.services.UserProfileService;
 import com.ozalp.auth.models.entities.UserProfile;
+import com.ozalp.core.managers.BaseImpl;
 import com.ozalp.training.business.dtos.requests.CreateCoachingAssignmentRequest;
 import com.ozalp.training.business.services.CoachingAssignmentService;
 import com.ozalp.training.dataAccess.CoachingAssignmentRepository;
 import com.ozalp.training.models.entities.CoachingAssignment;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@RequiredArgsConstructor
-public class CoachingAssignmentImpl implements CoachingAssignmentService {
+public class CoachingAssignmentImpl extends BaseImpl<CoachingAssignment> implements CoachingAssignmentService {
 
     private final CoachingAssignmentRepository repository;
     private final UserProfileService userProfileService;
 
-    @Override
-    public CoachingAssignment findById(int id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Coaching assigment not found"));
-    }
-
-    @Override
-    public CoachingAssignment save(CoachingAssignment coachingAssignment) {
-        return repository.save(coachingAssignment);
-    }
-
-    @Override
-    public void delete(int id) {
-        CoachingAssignment coachingAssignment = findById(id);
-        coachingAssignment.markAsDelete();
-        repository.save(coachingAssignment);
+    public CoachingAssignmentImpl(JpaRepository<CoachingAssignment, Integer> baseRepository, CoachingAssignmentRepository repository, UserProfileService userProfileService) {
+        super(baseRepository);
+        this.repository = repository;
+        this.userProfileService = userProfileService;
     }
 
     @Override

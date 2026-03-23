@@ -2,6 +2,7 @@ package com.ozalp.organization.business.impls;
 
 import com.ozalp.auth.business.services.UserProfileService;
 import com.ozalp.auth.models.entities.UserProfile;
+import com.ozalp.core.managers.BaseImpl;
 import com.ozalp.organization.business.dtos.requests.CreateOrganizationRequest;
 import com.ozalp.organization.business.dtos.responses.OrganizationResponse;
 import com.ozalp.organization.business.mappers.OrganizationMapper;
@@ -10,32 +11,21 @@ import com.ozalp.organization.dataAccess.OrganizationRepository;
 import com.ozalp.organization.models.entities.Organization;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
-public class OrganizationImpl implements OrganizationService {
+public class OrganizationImpl extends BaseImpl<Organization> implements OrganizationService {
 
     private final OrganizationRepository repository;
     private final OrganizationMapper mapper;
     private final UserProfileService userProfileService;
 
-    @Override
-    public Organization findById(int id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Organization not found"));
-    }
-
-    @Override
-    public Organization save(Organization organization) {
-        return repository.save(organization);
-    }
-
-    @Override
-    public void delete(int id) {
-        Organization organization = findById(id);
-        organization.markAsDelete();
-        repository.save(organization);
+    public OrganizationImpl(JpaRepository<Organization, Integer> baseRepository, OrganizationRepository repository, OrganizationMapper mapper, UserProfileService userProfileService) {
+        super(baseRepository);
+        this.repository = repository;
+        this.mapper = mapper;
+        this.userProfileService = userProfileService;
     }
 
     @Override
@@ -43,8 +33,6 @@ public class OrganizationImpl implements OrganizationService {
         UserProfile owner = userProfileService.findById(request.getOwnerUserProfileId());
         Organization organization = mapper.toEntity(request);
         organization.setOwnerUserProfileId(owner.getId());
-
-//        kafkaTemplate.send(EventConst.Topics.CREATED_ORGANIZATION, new OrganizationCreatedEvent(owner.getEmail(), organization.getName())); // update
         return mapper.toResponse(repository.save(organization), owner);
     }
 

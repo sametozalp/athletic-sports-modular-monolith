@@ -1,5 +1,6 @@
 package com.ozalp.training.business.impls;
 
+import com.ozalp.core.managers.BaseImpl;
 import com.ozalp.organization.business.services.OrganizationService;
 import com.ozalp.organization.models.entities.Organization;
 import com.ozalp.training.business.dtos.requests.CreateAthleteProgressRequest;
@@ -10,38 +11,26 @@ import com.ozalp.training.business.services.TrainingItemTaskService;
 import com.ozalp.training.dataAccess.AthleteProgressRepository;
 import com.ozalp.training.models.entities.AthleteProgress;
 import com.ozalp.training.models.entities.TrainingItemTask;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
-public class AthleteProgressImpl implements AthleteProgressService {
+public class AthleteProgressImpl extends BaseImpl<AthleteProgress> implements AthleteProgressService {
 
     private final AthleteProgressRepository repository;
     private final AthleteProgressMapper mapper;
     private final TrainingItemTaskService trainingItemTaskService;
     private final OrganizationService organizationService;
 
-    @Override
-    public AthleteProgress findById(int id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Athlete progress not found"));
-    }
-
-    @Override
-    public AthleteProgress save(AthleteProgress athleteProgress) {
-        return repository.save(athleteProgress);
-    }
-
-    @Override
-    public void delete(int id) {
-        AthleteProgress athleteProgress = findById(id);
-        athleteProgress.markAsDelete();
-        repository.save(athleteProgress);
+    public AthleteProgressImpl(JpaRepository<AthleteProgress, Integer> baseRepository, AthleteProgressRepository repository, AthleteProgressMapper mapper, TrainingItemTaskService trainingItemTaskService, OrganizationService organizationService) {
+        super(baseRepository);
+        this.repository = repository;
+        this.mapper = mapper;
+        this.trainingItemTaskService = trainingItemTaskService;
+        this.organizationService = organizationService;
     }
 
     @Override
