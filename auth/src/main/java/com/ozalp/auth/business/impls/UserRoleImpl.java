@@ -9,21 +9,17 @@ import com.ozalp.auth.models.entities.Role;
 import com.ozalp.auth.models.entities.UserProfile;
 import com.ozalp.auth.models.entities.UserRole;
 import com.ozalp.core.managers.BaseImpl;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class UserRoleImpl extends BaseImpl<UserRole> implements UserRoleService {
 
     private final UserRoleRepository repository;
     private final RoleService roleService;
     private final UserProfileService userProfileService;
-
-    public UserRoleImpl(UserRoleRepository repository, RoleService roleService, UserProfileService userProfileService) {
-        super(repository);
-        this.repository = repository;
-        this.roleService = roleService;
-        this.userProfileService = userProfileService;
-    }
 
     @Override
     public void create(CreateUserRoleRequest request) {
@@ -31,5 +27,10 @@ public class UserRoleImpl extends BaseImpl<UserRole> implements UserRoleService 
         UserProfile userProfile = userProfileService.findById(request.getUserProfileId());
         UserRole userRole = new UserRole(userProfile, role);
         repository.save(userRole);
+    }
+
+    @Override
+    protected JpaRepository<UserRole, Integer> getRepository() {
+        return repository;
     }
 }

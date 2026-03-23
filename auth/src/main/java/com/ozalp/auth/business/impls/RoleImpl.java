@@ -7,20 +7,16 @@ import com.ozalp.auth.business.services.RoleService;
 import com.ozalp.auth.dataAccess.RoleRepository;
 import com.ozalp.auth.models.entities.Role;
 import com.ozalp.core.managers.BaseImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class RoleImpl extends BaseImpl<Role> implements RoleService {
 
     private final RoleRepository repository;
     private final RoleMapper mapper;
-
-    public RoleImpl(JpaRepository<Role, Integer> baseRepository, RoleRepository repository, RoleMapper mapper) {
-        super(baseRepository);
-        this.repository = repository;
-        this.mapper = mapper;
-    }
 
     @Override
     public Role findByName(String name) {
@@ -31,5 +27,10 @@ public class RoleImpl extends BaseImpl<Role> implements RoleService {
     public RoleResponse create(CreateRoleRequest request) {
         Role role = mapper.toEntity(request);
         return mapper.toResponse(repository.save(role));
+    }
+
+    @Override
+    protected JpaRepository<Role, Integer> getRepository() {
+        return repository;
     }
 }

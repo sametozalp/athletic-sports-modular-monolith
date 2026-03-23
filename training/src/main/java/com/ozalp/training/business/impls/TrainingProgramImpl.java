@@ -10,25 +10,19 @@ import com.ozalp.training.business.mappers.TrainingProgramMapper;
 import com.ozalp.training.business.services.TrainingProgramService;
 import com.ozalp.training.dataAccess.TrainingProgramRepository;
 import com.ozalp.training.models.entities.TrainingProgram;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class TrainingProgramImpl extends BaseImpl<TrainingProgram> implements TrainingProgramService {
 
     private final TrainingProgramRepository repository;
     private final TrainingProgramMapper mapper;
     private final UserProfileService userProfileService;
     private final EmailService emailService;
-
-    public TrainingProgramImpl(JpaRepository<TrainingProgram, Integer> baseRepository, TrainingProgramRepository repository, TrainingProgramMapper mapper, UserProfileService userProfileService, EmailService emailService) {
-        super(baseRepository);
-        this.repository = repository;
-        this.mapper = mapper;
-        this.userProfileService = userProfileService;
-        this.emailService = emailService;
-    }
 
     @Override
     @Transactional
@@ -40,5 +34,10 @@ public class TrainingProgramImpl extends BaseImpl<TrainingProgram> implements Tr
         trainingProgram.setAthleteUserProfileId(athlete.getId());
         trainingProgram.setCoachUserProfileId(coach.getId());
         return mapper.toResponse(repository.save(trainingProgram), athlete, coach);
+    }
+
+    @Override
+    protected JpaRepository<TrainingProgram, Integer> getRepository() {
+        return repository;
     }
 }

@@ -6,20 +6,18 @@ import com.ozalp.motivation_sentence.business.dtos.MotivationSentenceResponse;
 import com.ozalp.motivation_sentence.business.services.MotivationSentenceService;
 import com.ozalp.motivation_sentence.dataAccess.MotivationSentenceRepository;
 import com.ozalp.motivation_sentence.models.entities.MotivationSentence;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class MotivationSentenceImpl extends BaseImpl<MotivationSentence> implements MotivationSentenceService {
 
     private final MotivationSentenceRepository repository;
-
-    public MotivationSentenceImpl(MotivationSentenceRepository repository) {
-        super(repository);
-        this.repository = repository;
-    }
 
     @Override
     public MotivationSentenceResponse create(CreateMotivationSentenceRequest request) {
@@ -41,5 +39,10 @@ public class MotivationSentenceImpl extends BaseImpl<MotivationSentence> impleme
                     .build();
         }
         return null;
+    }
+
+    @Override
+    protected JpaRepository<MotivationSentence, Integer> getRepository() {
+        return repository;
     }
 }

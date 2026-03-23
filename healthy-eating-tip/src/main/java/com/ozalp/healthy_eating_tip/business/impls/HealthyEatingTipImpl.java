@@ -6,20 +6,18 @@ import com.ozalp.healthy_eating_tip.business.dtos.responses.HealthyEatingTipResp
 import com.ozalp.healthy_eating_tip.business.services.HealthyEatingTipService;
 import com.ozalp.healthy_eating_tip.dataAccess.HealthyEatingTipRepository;
 import com.ozalp.healthy_eating_tip.models.entities.HealthyEatingTip;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class HealthyEatingTipImpl extends BaseImpl<HealthyEatingTip> implements HealthyEatingTipService {
 
     private final HealthyEatingTipRepository repository;
-
-    public HealthyEatingTipImpl(HealthyEatingTipRepository repository) {
-        super(repository);
-        this.repository = repository;
-    }
 
     @Override
     public HealthyEatingTipResponse create(CreateHealthyEatingTipRequest request) {
@@ -44,5 +42,10 @@ public class HealthyEatingTipImpl extends BaseImpl<HealthyEatingTip> implements 
                     .build();
         }
         return null;
+    }
+
+    @Override
+    protected JpaRepository<HealthyEatingTip, Integer> getRepository() {
+        return repository;
     }
 }

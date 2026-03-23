@@ -12,25 +12,19 @@ import com.ozalp.training.models.entities.AthleteProgress;
 import com.ozalp.training.models.entities.MealItemTask;
 import com.ozalp.training.models.entities.TrainingProgram;
 import com.ozalp.training.models.enums.AthleteProgressStatus;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class MealItemTaskImpl extends BaseImpl<MealItemTask> implements MealItemService {
 
     private final MealItemRepository repository;
     private final MealItemMapper mapper;
     private final TrainingProgramService trainingProgramService;
     private final AthleteProgressService athleteProgressService;
-
-    public MealItemTaskImpl(JpaRepository<MealItemTask, Integer> baseRepository, MealItemRepository repository, MealItemMapper mapper, TrainingProgramService trainingProgramService, AthleteProgressService athleteProgressService) {
-        super(baseRepository);
-        this.repository = repository;
-        this.mapper = mapper;
-        this.trainingProgramService = trainingProgramService;
-        this.athleteProgressService = athleteProgressService;
-    }
 
     @Transactional
     @Override
@@ -50,5 +44,10 @@ public class MealItemTaskImpl extends BaseImpl<MealItemTask> implements MealItem
         athleteProgressService.save(athleteProgress);
 
         return mapper.toResponse(repository.save(mealItemTask));
+    }
+
+    @Override
+    protected JpaRepository<MealItemTask, Integer> getRepository() {
+        return repository;
     }
 }

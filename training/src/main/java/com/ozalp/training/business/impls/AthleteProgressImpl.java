@@ -11,6 +11,7 @@ import com.ozalp.training.business.services.TrainingItemTaskService;
 import com.ozalp.training.dataAccess.AthleteProgressRepository;
 import com.ozalp.training.models.entities.AthleteProgress;
 import com.ozalp.training.models.entities.TrainingItemTask;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,20 +19,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AthleteProgressImpl extends BaseImpl<AthleteProgress> implements AthleteProgressService {
 
     private final AthleteProgressRepository repository;
     private final AthleteProgressMapper mapper;
     private final TrainingItemTaskService trainingItemTaskService;
     private final OrganizationService organizationService;
-
-    public AthleteProgressImpl(JpaRepository<AthleteProgress, Integer> baseRepository, AthleteProgressRepository repository, AthleteProgressMapper mapper, TrainingItemTaskService trainingItemTaskService, OrganizationService organizationService) {
-        super(baseRepository);
-        this.repository = repository;
-        this.mapper = mapper;
-        this.trainingItemTaskService = trainingItemTaskService;
-        this.organizationService = organizationService;
-    }
 
     @Override
     public AthleteProgressResponse create(CreateAthleteProgressRequest request) {
@@ -61,5 +55,10 @@ public class AthleteProgressImpl extends BaseImpl<AthleteProgress> implements At
                 .stream()
                 .map(mapper::toResponse)
                 .toList();
+    }
+
+    @Override
+    protected JpaRepository<AthleteProgress, Integer> getRepository() {
+        return repository;
     }
 }

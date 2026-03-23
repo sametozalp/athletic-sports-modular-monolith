@@ -8,22 +8,19 @@ import com.ozalp.auth.dataAccess.AuthRepository;
 import com.ozalp.auth.models.entities.Auth;
 import com.ozalp.auth.models.entities.UserProfile;
 import com.ozalp.core.managers.BaseImpl;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class AuthImpl extends BaseImpl<Auth> implements AuthService {
 
     private final AuthRepository repository;
     private final AuthMapper mapper;
-
-    public AuthImpl(AuthRepository repository, AuthMapper mapper) {
-        super(repository);
-        this.repository = repository;
-        this.mapper = mapper;
-    }
 
     @Transactional
     @Override
@@ -51,5 +48,10 @@ public class AuthImpl extends BaseImpl<Auth> implements AuthService {
             auth.setUserProfile(userProfile);
             repository.save(auth);
         }
+    }
+
+    @Override
+    protected JpaRepository<Auth, Integer> getRepository() {
+        return repository;
     }
 }

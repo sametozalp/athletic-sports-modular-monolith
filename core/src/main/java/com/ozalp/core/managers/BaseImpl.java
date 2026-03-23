@@ -10,23 +10,23 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public abstract class BaseImpl<T extends BaseEntity> implements BaseService<T> {
 
-    private final JpaRepository<T, Integer> baseRepository;
+    protected abstract JpaRepository<T, Integer> getRepository();
 
     @Override
     public T findById(int id) {
-        return baseRepository.findById(id)
+        return getRepository().findById(id)
                 .orElseThrow(() -> new RuntimeException("Record not found"));
     }
 
     @Override
     public T save(T t) {
-        return baseRepository.save(t);
+        return getRepository().save(t);
     }
 
     @Override
     public void delete(int id) {
         T entity = findById(id);
         entity.markAsDelete();
-        baseRepository.save(entity);
+        getRepository().save(entity);
     }
 }

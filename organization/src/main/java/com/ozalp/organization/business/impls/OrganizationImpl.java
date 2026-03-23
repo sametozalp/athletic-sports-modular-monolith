@@ -15,18 +15,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class OrganizationImpl extends BaseImpl<Organization> implements OrganizationService {
 
     private final OrganizationRepository repository;
     private final OrganizationMapper mapper;
     private final UserProfileService userProfileService;
-
-    public OrganizationImpl(JpaRepository<Organization, Integer> baseRepository, OrganizationRepository repository, OrganizationMapper mapper, UserProfileService userProfileService) {
-        super(baseRepository);
-        this.repository = repository;
-        this.mapper = mapper;
-        this.userProfileService = userProfileService;
-    }
 
     @Override
     public OrganizationResponse create(CreateOrganizationRequest request) {
@@ -41,5 +35,10 @@ public class OrganizationImpl extends BaseImpl<Organization> implements Organiza
         Organization organization = repository.findById(id).orElseThrow();
         UserProfile owner = userProfileService.findById(organization.getOwnerUserProfileId());
         return mapper.toResponse(organization, owner);
+    }
+
+    @Override
+    protected JpaRepository<Organization, Integer> getRepository() {
+        return repository;
     }
 }

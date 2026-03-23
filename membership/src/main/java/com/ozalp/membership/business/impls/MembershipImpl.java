@@ -11,24 +11,18 @@ import com.ozalp.membership.dataAccess.MembershipRepository;
 import com.ozalp.membership.models.entities.Membership;
 import com.ozalp.organization.business.services.OrganizationService;
 import com.ozalp.organization.models.entities.Organization;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class MembershipImpl extends BaseImpl<Membership> implements MembershipService {
 
     private final MembershipRepository repository;
     private final MembershipMapper mapper;
     private final OrganizationService organizationService;
     private final UserProfileService userProfileService;
-
-    public MembershipImpl(JpaRepository<Membership, Integer> baseRepository, MembershipRepository repository, MembershipMapper mapper, OrganizationService organizationService, UserProfileService userProfileService) {
-        super(baseRepository);
-        this.repository = repository;
-        this.mapper = mapper;
-        this.organizationService = organizationService;
-        this.userProfileService = userProfileService;
-    }
 
     @Override
     public MembershipResponse create(CreateMembershipRequest request) {
@@ -40,5 +34,10 @@ public class MembershipImpl extends BaseImpl<Membership> implements MembershipSe
         membership.setUserProfileId(userProfile.getId());
 
         return mapper.toResponse(repository.save(membership), organization, userProfile);
+    }
+
+    @Override
+    protected JpaRepository<Membership, Integer> getRepository() {
+        return repository;
     }
 }

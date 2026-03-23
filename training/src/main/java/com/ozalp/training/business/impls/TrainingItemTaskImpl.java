@@ -6,22 +6,18 @@ import com.ozalp.training.business.mappers.TrainingItemMapper;
 import com.ozalp.training.business.services.TrainingItemTaskService;
 import com.ozalp.training.dataAccess.TrainingItemTaskRepository;
 import com.ozalp.training.models.entities.TrainingItemTask;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TrainingItemTaskImpl extends BaseImpl<TrainingItemTask> implements TrainingItemTaskService {
 
     private final TrainingItemTaskRepository repository;
     private final TrainingItemMapper mapper;
-
-    public TrainingItemTaskImpl(JpaRepository<TrainingItemTask, Integer> baseRepository, TrainingItemTaskRepository repository, TrainingItemMapper mapper) {
-        super(baseRepository);
-        this.repository = repository;
-        this.mapper = mapper;
-    }
 
     @Override
     public List<TrainingItemTaskResponse> getAll() {
@@ -29,5 +25,10 @@ public class TrainingItemTaskImpl extends BaseImpl<TrainingItemTask> implements 
                 .stream()
                 .map(mapper::toResponse)
                 .toList();
+    }
+
+    @Override
+    protected JpaRepository<TrainingItemTask, Integer> getRepository() {
+        return repository;
     }
 }
