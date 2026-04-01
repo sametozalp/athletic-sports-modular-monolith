@@ -45,6 +45,7 @@ public class AuthImpl extends BaseImpl<Auth> implements AuthService {
             auth.setUsername("admin");
             auth.setPassword("123456");
             UserProfile userProfile = new UserProfile();
+            userProfile.setName("admin");
             auth.setUserProfile(userProfile);
             repository.save(auth);
         }

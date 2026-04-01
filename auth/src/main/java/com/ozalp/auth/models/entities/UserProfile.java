@@ -21,7 +21,7 @@ public class UserProfile extends BaseEntity {
     @OneToOne(mappedBy = "userProfile", cascade = CascadeType.ALL)
     private Auth auth;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @Column
