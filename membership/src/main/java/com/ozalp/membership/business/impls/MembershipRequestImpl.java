@@ -14,7 +14,6 @@ import com.ozalp.organization.models.entities.Organization;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,12 +25,10 @@ public class MembershipRequestImpl extends BaseImpl<MembershipRequest> implement
     private final UserProfileService userProfileService;
 
     @Override
-    @Transactional
     public MembershipRequestResponse create(CreateMembershipRequestRequest request) {
         MembershipRequest membershipRequest = mapper.toEntity(request);
         Organization organization = organizationService.findById(request.getOrganizationId());
         UserProfile userProfile = userProfileService.findById(request.getUserProfileId());
-
         return mapper.toResponse(repository.save(membershipRequest), organization, userProfile);
     }
 

@@ -30,8 +30,6 @@ public class MembershipImpl extends BaseImpl<Membership> implements MembershipSe
         UserProfile userProfile = userProfileService.findById(request.getUserProfileId());
 
         Membership membership = mapper.toEntity(request);
-        membership.setOrganizationId(organization.getId());
-        membership.setUserProfileId(userProfile.getId());
 
         return mapper.toResponse(repository.save(membership), organization, userProfile);
     }

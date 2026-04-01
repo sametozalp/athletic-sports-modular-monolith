@@ -11,6 +11,9 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface MembershipMapper {
 
+    @Mapping(target = "organizationId", source = "organizationId")
+    @Mapping(target = "userProfileId", source = "userProfileId")
+    @Mapping(target = "joinedAt", expression = "java(java.time.LocalDateTime.now())")
     Membership toEntity(CreateMembershipRequest request);
 
     @Mapping(target = "id", source = "membership.id")
