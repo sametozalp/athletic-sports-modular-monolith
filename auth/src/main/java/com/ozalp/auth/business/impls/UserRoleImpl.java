@@ -1,6 +1,8 @@
 package com.ozalp.auth.business.impls;
 
 import com.ozalp.auth.business.dtos.requests.CreateUserRoleRequest;
+import com.ozalp.auth.business.dtos.responses.UserRoleResponse;
+import com.ozalp.auth.business.mappers.UserRoleMapper;
 import com.ozalp.auth.business.services.RoleService;
 import com.ozalp.auth.business.services.UserProfileService;
 import com.ozalp.auth.business.services.UserRoleService;
@@ -13,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserRoleImpl extends BaseImpl<UserRole> implements UserRoleService {
@@ -20,6 +24,7 @@ public class UserRoleImpl extends BaseImpl<UserRole> implements UserRoleService 
     private final UserRoleRepository repository;
     private final RoleService roleService;
     private final UserProfileService userProfileService;
+    private final UserRoleMapper mapper;
 
     @Override
     public void create(CreateUserRoleRequest request) {
@@ -27,6 +32,14 @@ public class UserRoleImpl extends BaseImpl<UserRole> implements UserRoleService 
         UserProfile userProfile = userProfileService.findById(request.getUserProfileId());
         UserRole userRole = new UserRole(userProfile, role);
         repository.save(userRole);
+    }
+
+    @Override
+    public List<UserRoleResponse> getAllRoles(int id) {
+        return repository.findAll()
+                .stream()
+                .map(mapper::toResponse)
+                .toList();
     }
 
     @Override

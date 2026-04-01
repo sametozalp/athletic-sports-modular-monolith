@@ -7,10 +7,7 @@ import com.ozalp.core.utils.consts.ApiParams;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(ApiConst.ApiPath.USER_ROLE)
@@ -23,5 +20,10 @@ public class UserRoleController {
     ResponseEntity<?> create(@RequestBody @Valid CreateUserRoleRequest request) {
         userRoleService.create(request);
         return ResponseEntity.ok("");
+    }
+
+    @GetMapping(ApiParams.Base.DETAIL)
+    ResponseEntity<?> getAll(@PathVariable int id) {
+        return ResponseEntity.ok(userRoleService.getAllRoles(id));
     }
 }
