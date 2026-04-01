@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class UserRoleResponse {
 
+    private UserProfileResponse user;
+
     private RoleResponse role;
 
 }

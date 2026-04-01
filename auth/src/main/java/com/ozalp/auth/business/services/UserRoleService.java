@@ -12,4 +12,6 @@ public interface UserRoleService extends BaseService<UserRole> {
     void create(CreateUserRoleRequest request);
 
     List<UserRoleResponse> getAllRoles(int id);
+
+    UserRoleResponse getDetail(int userId);
 }

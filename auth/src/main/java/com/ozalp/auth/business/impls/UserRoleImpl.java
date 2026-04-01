@@ -35,11 +35,16 @@ public class UserRoleImpl extends BaseImpl<UserRole> implements UserRoleService 
     }
 
     @Override
-    public List<UserRoleResponse> getAllRoles(int id) {
-        return repository.findAll()
+    public List<UserRoleResponse> getAllRoles(int userId) {
+        return repository.getUserRoles(userId)
                 .stream()
                 .map(mapper::toResponse)
                 .toList();
+    }
+
+    @Override
+    public UserRoleResponse getDetail(int id) {
+        return mapper.toResponse(findById(id));
     }
 
     @Override
