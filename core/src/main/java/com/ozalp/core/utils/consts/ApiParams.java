@@ -5,6 +5,7 @@ public final class ApiParams {
     public final static class Base {
         public final static String ADD = "/add"; // for super admin
         public final static String ID = "/{id}";
+        public final static String USER_ID = "/{userId}";
         public final static String RANDOM = "/random";
         public final static String ALL = "/all";
     }
@@ -20,7 +21,6 @@ public final class ApiParams {
     }
 
     public final static class UserRole {
-        public static final String USER_ID_ALL = "{userId}/all";
     }
 
     public final static class HealthyEatingTip {

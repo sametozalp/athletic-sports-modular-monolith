@@ -6,6 +6,7 @@ import com.ozalp.core.utils.consts.ApiConst;
 import com.ozalp.core.utils.consts.ApiParams;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +20,10 @@ public class UserRoleController {
     @PostMapping(ApiParams.Base.ID)
     ResponseEntity<?> create(@RequestBody @Valid CreateUserRoleRequest request) {
         userRoleService.create(request);
-        return ResponseEntity.ok("");
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping(ApiParams.UserRole.USER_ID_ALL)
+    @GetMapping(ApiParams.Base.USER_ID)
     ResponseEntity<?> getAll(@PathVariable int userId) {
         return ResponseEntity.ok(userRoleService.getAllRoles(userId));
     }
