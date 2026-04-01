@@ -15,7 +15,7 @@ public interface AthleteProgressRepository extends JpaRepository<AthleteProgress
                 where ap.status = com.ozalp.training.models.enums.AthleteProgressStatus.COMPLETED
                   and ap.trainingItemTask.trainingProgram.athleteUserProfileId = :userProfileId
                   and ap.trainingItemTask.trainingProgram.athleteUserProfileId = :userProfileId
-                  and ap.createdAt >= :#{T(java.time.LocalDateTime).now().minusMonths(1)}
+                  and ap.createdAt >= :#{T(java.time.Instant).now().minusMonths(1)}
             """)
     int getTotalPointThisMonth(int userProfileId);
 
@@ -32,7 +32,7 @@ public interface AthleteProgressRepository extends JpaRepository<AthleteProgress
                     END
                 AS int)
                 FROM AthleteProgress ap
-                WHERE ap.createdAt >= :#{T(java.time.LocalDateTime).now().minusMonths(1)}
+                WHERE ap.createdAt >= :#{T(java.time.Instant).now().minusMonths(1)}
             """)
     int getAchievementPercentageThisMonth(int userProfile);
 

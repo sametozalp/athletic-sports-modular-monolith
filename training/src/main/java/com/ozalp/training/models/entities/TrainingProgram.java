@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Table(name = "training_programs")
@@ -32,8 +32,8 @@ public class TrainingProgram extends BaseEntity {
     private String description;
 
     @Column(nullable = false)
-    private LocalDateTime startDate;
+    private Instant startDate;
 
     @Column(nullable = false)
-    private LocalDateTime endDate;
+    private Instant endDate;
 }

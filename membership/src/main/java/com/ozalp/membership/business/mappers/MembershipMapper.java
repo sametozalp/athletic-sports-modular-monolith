@@ -13,7 +13,7 @@ public interface MembershipMapper {
 
     @Mapping(target = "organizationId", source = "organizationId")
     @Mapping(target = "userProfileId", source = "userProfileId")
-    @Mapping(target = "joinedAt", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "joinedAt", expression = "java(java.time.Instant.now())")
     Membership toEntity(CreateMembershipRequest request);
 
     @Mapping(target = "id", source = "membership.id")

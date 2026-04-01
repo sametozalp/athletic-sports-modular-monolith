@@ -5,7 +5,7 @@ import com.ozalp.organization.business.dtos.responses.OrganizationResponse;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -17,7 +17,7 @@ public class MembershipResponse {
 
     private OrganizationResponse organization;
 
-    private LocalDateTime joinedAt;
+    private Instant joinedAt;
 
-    private LocalDateTime leftAt;
+    private Instant leftAt;
 }

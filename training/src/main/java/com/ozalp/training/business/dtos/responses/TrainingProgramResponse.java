@@ -4,7 +4,7 @@ import com.ozalp.auth.business.dtos.responses.UserProfileSimpleResponse;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -20,8 +20,8 @@ public class TrainingProgramResponse {
 
     private String description;
 
-    private LocalDateTime startDate;
+    private Instant startDate;
 
-    private LocalDateTime endDate;
+    private Instant endDate;
 
 }

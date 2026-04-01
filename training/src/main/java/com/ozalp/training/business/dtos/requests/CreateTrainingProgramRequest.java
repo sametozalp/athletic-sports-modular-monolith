@@ -3,7 +3,7 @@ package com.ozalp.training.business.dtos.requests;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -17,8 +17,8 @@ public class CreateTrainingProgramRequest {
 
     private String description;
 
-    private LocalDateTime startDate;
+    private Instant startDate;
 
-    private LocalDateTime endDate;
+    private Instant endDate;
 
 }

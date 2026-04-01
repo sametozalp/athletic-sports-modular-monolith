@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Table(name = "memberships")
@@ -25,10 +25,10 @@ public class Membership extends BaseEntity {
     private int userProfileId;
 
     @Column(nullable = false)
-    private LocalDateTime joinedAt;
+    private Instant joinedAt;
 
     @Column
-    private LocalDateTime leftAt;
+    private Instant leftAt;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

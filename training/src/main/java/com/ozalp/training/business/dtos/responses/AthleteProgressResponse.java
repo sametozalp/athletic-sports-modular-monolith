@@ -5,7 +5,7 @@ import com.ozalp.training.models.enums.AthleteProgressStatus;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -17,7 +17,7 @@ public class AthleteProgressResponse {
 
     private AthleteProgressStatus status;
 
-    private LocalDateTime completedAt;
+    private Instant completedAt;
 
     private int pointsEarned;
 
