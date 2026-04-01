@@ -16,7 +16,7 @@ public class MotivationSentenceController {
 
     private final MotivationSentenceService motivationSentenceService;
 
-    @PostMapping(ApiParams.Base.CREATE)
+    @PostMapping(ApiParams.Base.ID)
     ResponseEntity<?> create(@RequestBody @Valid CreateMotivationSentenceRequest request) {
         return ResponseEntity.ok(motivationSentenceService.create(request));
     }

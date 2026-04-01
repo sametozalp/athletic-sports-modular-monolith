@@ -10,8 +10,6 @@ import java.time.LocalDate;
 @Setter
 public class UpdateProfileRequest {
 
-    private int profileId;
-
     private String name;
 
     private String surname;

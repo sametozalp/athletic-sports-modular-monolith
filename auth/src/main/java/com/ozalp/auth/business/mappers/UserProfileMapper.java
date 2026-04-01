@@ -14,6 +14,9 @@ public interface UserProfileMapper {
 
     UserProfileSimpleResponse toResponse(UserProfile save);
 
+    @Mapping(target = "name", expression = "java(request.getName() != null ? request.getName().trim() : null)")
+    @Mapping(target = "surname", expression = "java(request.getSurname() != null ? request.getSurname().trim() : null)")
+    @Mapping(target = "phone", expression = "java(request.getPhone() != null ? request.getPhone().trim() : null)")
     void updateEntity(UpdateProfileRequest request,
                       @MappingTarget UserProfile entity);
 }

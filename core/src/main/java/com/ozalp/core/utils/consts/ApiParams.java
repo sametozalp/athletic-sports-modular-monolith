@@ -4,8 +4,7 @@ public final class ApiParams {
 
     public final static class Base {
         public final static String ADD = "/add"; // for super admin
-        public final static String CREATE = "/create";
-        public final static String UPDATE = "/update";
+        public final static String ID = "/{id}";
         public final static String RANDOM = "/random";
         public final static String DELETE = "/delete/{id}";
         public final static String ALL = "/all";

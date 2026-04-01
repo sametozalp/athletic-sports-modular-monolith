@@ -19,7 +19,7 @@ public class ExerciseController {
 
     private final ExerciseService exerciseService;
 
-    @PostMapping(ApiParams.Base.CREATE)
+    @PostMapping(ApiParams.Base.ID)
     ResponseEntity<?> create(@RequestBody @Valid CreateExerciseRequest request) {
         return ResponseEntity.ok(exerciseService.create(request));
     }

@@ -16,9 +16,9 @@ public class UserProfileController {
 
     private final UserProfileService userProfileService;
 
-    @PostMapping(ApiParams.Base.UPDATE)
-    ResponseEntity<?> update(@RequestBody @Valid UpdateProfileRequest request) {
-        return ResponseEntity.ok(userProfileService.updateProfile(request));
+    @PutMapping(ApiParams.Base.ID)
+    ResponseEntity<?> update(@PathVariable int id, @RequestBody @Valid UpdateProfileRequest request) {
+        return ResponseEntity.ok(userProfileService.updateProfile(id, request));
     }
 
     @GetMapping(ApiParams.Base.DETAIL)

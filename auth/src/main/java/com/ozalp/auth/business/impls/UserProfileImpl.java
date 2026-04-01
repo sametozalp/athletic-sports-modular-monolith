@@ -19,8 +19,8 @@ public class UserProfileImpl extends BaseImpl<UserProfile> implements UserProfil
     private final UserProfileMapper mapper;
 
     @Override
-    public UserProfileSimpleResponse updateProfile(UpdateProfileRequest request) {
-        UserProfile profile = findById(request.getProfileId());
+    public UserProfileSimpleResponse updateProfile(int id, UpdateProfileRequest request) {
+        UserProfile profile = findById(id);
         mapper.updateEntity(request, profile);
         return mapper.toResponse(repository.save(profile));
     }

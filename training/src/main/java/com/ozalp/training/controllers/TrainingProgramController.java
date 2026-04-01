@@ -19,7 +19,7 @@ public class TrainingProgramController {
 
     private final TrainingProgramService trainingProgramService;
 
-    @PostMapping(ApiParams.Base.CREATE)
+    @PostMapping(ApiParams.Base.ID)
     ResponseEntity<?> create(@RequestBody @Valid CreateTrainingProgramRequest request) {
         return ResponseEntity.ok(trainingProgramService.create(request));
     }

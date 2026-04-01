@@ -16,7 +16,7 @@ public class OrganizationController {
 
     private final OrganizationService organizationService;
 
-    @PostMapping(ApiParams.Base.CREATE)
+    @PostMapping(ApiParams.Base.ID)
     ResponseEntity<?> create(@RequestBody @Valid CreateOrganizationRequest request) {
         return ResponseEntity.ok(organizationService.create(request));
     }

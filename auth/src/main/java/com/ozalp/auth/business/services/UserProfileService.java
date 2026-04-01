@@ -7,7 +7,7 @@ import com.ozalp.core.services.BaseService;
 
 public interface UserProfileService extends BaseService<UserProfile> {
 
-    UserProfileSimpleResponse updateProfile(UpdateProfileRequest request);
+    UserProfileSimpleResponse updateProfile(int id, UpdateProfileRequest request);
 
     UserProfileSimpleResponse getProfileDetail(int id);
 }
