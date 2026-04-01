@@ -15,6 +15,6 @@ public interface AthleteProgressService extends BaseService<AthleteProgress> {
 
     int getAchievementPercentageThisMonth(int userProfile);
 
-    List<AthleteProgressResponse> getDailyMissions(int userProfileId);
+    List<AthleteProgressResponse> getAllDailyMissions(int userProfileId);
 
 }

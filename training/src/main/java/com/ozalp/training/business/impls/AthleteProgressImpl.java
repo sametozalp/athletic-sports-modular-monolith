@@ -29,12 +29,9 @@ public class AthleteProgressImpl extends BaseImpl<AthleteProgress> implements At
 
     @Override
     public AthleteProgressResponse create(CreateAthleteProgressRequest request) {
-        Organization organization = organizationService.findById(request.getOrganizationId());
+        organizationService.findById(request.getOrganizationId());
         TrainingItemTask trainingItemTask = trainingItemTaskService.findById(request.getTrainingItemId());
-        AthleteProgress athleteProgress = mapper.toEntity(request);
-        athleteProgress.setOrganizationId(organization.getId());
-        athleteProgress.setTrainingItemTask(trainingItemTask);
-        athleteProgress.setPointsEarned(trainingItemTask.getPoint());
+        AthleteProgress athleteProgress = mapper.toEntity(request, trainingItemTask);
         return mapper.toResponse(repository.save(athleteProgress));
     }
 
@@ -49,7 +46,7 @@ public class AthleteProgressImpl extends BaseImpl<AthleteProgress> implements At
     }
 
     @Override
-    public List<AthleteProgressResponse> getDailyMissions(int userProfileId) {
+    public List<AthleteProgressResponse> getAllDailyMissions(int userProfileId) {
         LocalDate fromDate = LocalDate.now().minusDays(1);
         return repository.getDailyMissions(userProfileId, fromDate)
                 .stream()
