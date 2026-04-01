@@ -3,6 +3,7 @@ package com.ozalp.motivation_sentence.business.impls;
 import com.ozalp.core.managers.BaseImpl;
 import com.ozalp.motivation_sentence.business.dtos.CreateMotivationSentenceRequest;
 import com.ozalp.motivation_sentence.business.dtos.MotivationSentenceResponse;
+import com.ozalp.motivation_sentence.business.mappers.MotivationSentenceMapper;
 import com.ozalp.motivation_sentence.business.services.MotivationSentenceService;
 import com.ozalp.motivation_sentence.dataAccess.MotivationSentenceRepository;
 import com.ozalp.motivation_sentence.models.entities.MotivationSentence;
@@ -18,27 +19,22 @@ import java.util.List;
 public class MotivationSentenceImpl extends BaseImpl<MotivationSentence> implements MotivationSentenceService {
 
     private final MotivationSentenceRepository repository;
+    private final MotivationSentenceMapper mapper;
 
     @Override
     public MotivationSentenceResponse create(CreateMotivationSentenceRequest request) {
         MotivationSentence motivationSentence = new MotivationSentence(request.getSentence());
-        MotivationSentence saved = repository.save(motivationSentence);
-        return MotivationSentenceResponse.builder()
-                .sentence(saved.getSentence())
-                .build();
+        return mapper.toResponse(repository.save(motivationSentence));
     }
 
     @Override
     public MotivationSentenceResponse getRandomSentence() {
         List<MotivationSentence> list = repository.getRandomSentence(PageRequest.of(0, 1));
+        return list.stream()
+                .findFirst()
+                .map(mapper::toResponse)
+                .orElse(null);
 
-        if (!list.isEmpty()) {
-            MotivationSentence motivationSentence = list.get(0);
-            return MotivationSentenceResponse.builder()
-                    .sentence(motivationSentence.getSentence())
-                    .build();
-        }
-        return null;
     }
 
     @Override

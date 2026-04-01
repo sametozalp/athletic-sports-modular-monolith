@@ -30,11 +30,10 @@ public class HealthyEatingTipImpl extends BaseImpl<HealthyEatingTip> implements 
     @Override
     public HealthyEatingTipResponse getRandomTip() {
         List<HealthyEatingTip> list = repository.getRandomTip(PageRequest.of(0, 1));
-
-        if (!list.isEmpty()) {
-            return mapper.toResponse(list.getFirst());
-        }
-        return null;
+        return list.stream()
+                .findFirst()
+                .map(mapper::toResponse)
+                .orElse(null);
     }
 
     @Override
