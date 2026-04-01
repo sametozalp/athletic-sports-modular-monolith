@@ -10,7 +10,7 @@ public final class ApiParams {
         public final static String DELETE = "/delete/{id}";
         public final static String ALL = "/all";
         public final static String DETAIL = "/detail/{id}";
-
+        public static final String DETAIL_All = "/all/{id}";
     }
 
     public final static class Auth {

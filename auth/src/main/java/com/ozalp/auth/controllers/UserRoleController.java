@@ -22,7 +22,7 @@ public class UserRoleController {
         return ResponseEntity.ok("");
     }
 
-    @GetMapping(ApiParams.Base.DETAIL)
+    @GetMapping(ApiParams.Base.DETAIL_All)
     ResponseEntity<?> getAll(@PathVariable int id) {
         return ResponseEntity.ok(userRoleService.getAllRoles(id));
     }
