@@ -28,9 +28,7 @@ public class MembershipImpl extends BaseImpl<Membership> implements MembershipSe
     public MembershipResponse create(CreateMembershipRequest request) {
         Organization organization = organizationService.findById(request.getOrganizationId());
         UserProfile userProfile = userProfileService.findById(request.getUserProfileId());
-
         Membership membership = mapper.toEntity(request);
-
         return mapper.toResponse(repository.save(membership), organization, userProfile);
     }
 
