@@ -30,19 +30,9 @@ public class MealItemTaskImpl extends BaseImpl<MealItemTask> implements MealItem
     @Override
     public MealItemResponse create(CreateMealItemTaskRequest request) {
         TrainingProgram trainingProgram = trainingProgramService.findById(request.getTrainingProgramId());
-        MealItemTask mealItemTask = mapper.toEntity(request);
-        mealItemTask.setTrainingProgram(trainingProgram);
-        mealItemTask.setDate(request.getDate());
-
-        AthleteProgress athleteProgress = new AthleteProgress(
-                mealItemTask,
-                AthleteProgressStatus.NOT_COMPLETED,
-                null,
-                mealItemTask.getPoint()
-        );
-
+        MealItemTask mealItemTask = mapper.toEntity(request, trainingProgram);
+        AthleteProgress athleteProgress = new AthleteProgress(mealItemTask, AthleteProgressStatus.NOT_COMPLETED, mealItemTask.getPoint());
         athleteProgressService.save(athleteProgress);
-
         return mapper.toResponse(repository.save(mealItemTask));
     }
 

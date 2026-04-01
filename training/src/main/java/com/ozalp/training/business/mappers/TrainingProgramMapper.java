@@ -14,5 +14,8 @@ public interface TrainingProgramMapper {
     @Mapping(target = "athlete", source = "athlete")
     @Mapping(target = "coach", source = "coach")
     TrainingProgramResponse toResponse(TrainingProgram trainingProgram, UserProfile athlete, UserProfile coach);
+
+    @Mapping(target = "coachUserProfileId", source = "coachUserProfileId")
+    @Mapping(target = "athleteUserProfileId", source = "athleteUserProfileId")
     TrainingProgram toEntity(CreateTrainingProgramRequest request);
 }

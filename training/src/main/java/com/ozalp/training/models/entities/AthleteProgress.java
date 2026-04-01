@@ -8,8 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "athlete_progresses")
 @NoArgsConstructor
@@ -25,10 +23,7 @@ public class AthleteProgress extends BaseEntity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private AthleteProgressStatus status = AthleteProgressStatus.NOT_COMPLETED;
-
-    @Column
-    private LocalDateTime completedAt;
+    private AthleteProgressStatus status;
 
     @Column(nullable = false)
     private int pointsEarned;
@@ -36,10 +31,9 @@ public class AthleteProgress extends BaseEntity {
     @Column
     private int organizationId;
 
-    public AthleteProgress(TrainingItemTask trainingItemTask, AthleteProgressStatus status, LocalDateTime completedAt, int pointsEarned) {
+    public AthleteProgress(TrainingItemTask trainingItemTask, AthleteProgressStatus status, int pointsEarned) {
         this.trainingItemTask = trainingItemTask;
         this.status = status;
-        this.completedAt = completedAt;
         this.pointsEarned = pointsEarned;
     }
 }
