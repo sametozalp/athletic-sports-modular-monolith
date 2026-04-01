@@ -6,9 +6,7 @@ public final class ApiParams {
         public final static String ADD = "/add"; // for super admin
         public final static String ID = "/{id}";
         public final static String RANDOM = "/random";
-        public final static String DELETE = "/delete/{id}";
         public final static String ALL = "/all";
-        public final static String DETAIL = "/detail/{id}";
     }
 
     public final static class Auth {

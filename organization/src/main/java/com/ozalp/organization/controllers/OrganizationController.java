@@ -21,7 +21,7 @@ public class OrganizationController {
         return ResponseEntity.ok(organizationService.create(request));
     }
 
-    @GetMapping(ApiParams.Base.DETAIL)
+    @GetMapping(ApiParams.Base.ID)
     ResponseEntity<?> getOrganizationDetail(@PathVariable int id) {
         return ResponseEntity.ok(organizationService.getOrganizationDetail(id));
     }

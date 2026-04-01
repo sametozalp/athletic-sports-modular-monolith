@@ -23,7 +23,7 @@ public class CoachingAssignmentController {
         return ResponseEntity.status(HttpStatus.CREATED).body("");
     }
 
-    @DeleteMapping(ApiParams.Base.DELETE)
+    @DeleteMapping(ApiParams.Base.ID)
     ResponseEntity<?> delete(@PathVariable int id) {
         coachingAssignmentService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("");

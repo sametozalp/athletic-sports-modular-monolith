@@ -21,7 +21,7 @@ public class UserProfileController {
         return ResponseEntity.ok(userProfileService.updateProfile(id, request));
     }
 
-    @GetMapping(ApiParams.Base.DETAIL)
+    @GetMapping(ApiParams.Base.ID)
     ResponseEntity<?> findById(@PathVariable int id) {
         return ResponseEntity.ok(userProfileService.getProfileDetail(id));
     }
