@@ -26,13 +26,12 @@ public class OrganizationImpl extends BaseImpl<Organization> implements Organiza
     public OrganizationResponse create(CreateOrganizationRequest request) {
         UserProfile owner = userProfileService.findById(request.getOwnerUserProfileId());
         Organization organization = mapper.toEntity(request);
-        organization.setOwnerUserProfileId(owner.getId());
         return mapper.toResponse(repository.save(organization), owner);
     }
 
     @Override
     public OrganizationResponse getOrganizationDetail(int id) {
-        Organization organization = repository.findById(id).orElseThrow();
+        Organization organization = findById(id);
         UserProfile owner = userProfileService.findById(organization.getOwnerUserProfileId());
         return mapper.toResponse(organization, owner);
     }
