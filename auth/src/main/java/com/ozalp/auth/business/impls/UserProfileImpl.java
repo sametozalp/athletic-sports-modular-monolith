@@ -1,7 +1,7 @@
 package com.ozalp.auth.business.impls;
 
 import com.ozalp.auth.business.dtos.requests.UpdateProfileRequest;
-import com.ozalp.auth.business.dtos.responses.UserProfileResponse;
+import com.ozalp.auth.business.dtos.responses.UserProfileSimpleResponse;
 import com.ozalp.auth.business.mappers.UserProfileMapper;
 import com.ozalp.auth.business.services.UserProfileService;
 import com.ozalp.auth.dataAccess.UserProfileRepository;
@@ -19,14 +19,14 @@ public class UserProfileImpl extends BaseImpl<UserProfile> implements UserProfil
     private final UserProfileMapper mapper;
 
     @Override
-    public UserProfileResponse updateProfile(UpdateProfileRequest request) {
+    public UserProfileSimpleResponse updateProfile(UpdateProfileRequest request) {
         UserProfile profile = findById(request.getProfileId());
         mapper.updateEntity(request, profile);
         return mapper.toResponse(repository.save(profile));
     }
 
     @Override
-    public UserProfileResponse getProfileDetail(int id) {
+    public UserProfileSimpleResponse getProfileDetail(int id) {
         return mapper.toResponse(findById(id));
     }
 

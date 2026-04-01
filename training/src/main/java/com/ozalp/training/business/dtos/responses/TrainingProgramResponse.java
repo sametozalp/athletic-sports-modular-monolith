@@ -1,6 +1,6 @@
 package com.ozalp.training.business.dtos.responses;
 
-import com.ozalp.auth.business.dtos.responses.UserProfileResponse;
+import com.ozalp.auth.business.dtos.responses.UserProfileSimpleResponse;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,9 +12,9 @@ public class TrainingProgramResponse {
 
     private int id;
 
-    private UserProfileResponse coach;
+    private UserProfileSimpleResponse coach;
 
-    private UserProfileResponse athlete;
+    private UserProfileSimpleResponse athlete;
 
     private String title;
 

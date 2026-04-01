@@ -5,13 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserProfileResponse {
+public class UserProfileSimpleResponse {
 
     private int id;
 
     private String name;
-
-    private String surname;
-
-    private String email;
 }

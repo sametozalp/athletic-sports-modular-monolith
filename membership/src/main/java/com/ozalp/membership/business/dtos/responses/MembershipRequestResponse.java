@@ -1,6 +1,6 @@
 package com.ozalp.membership.business.dtos.responses;
 
-import com.ozalp.auth.business.dtos.responses.UserProfileResponse;
+import com.ozalp.auth.business.dtos.responses.UserProfileSimpleResponse;
 import com.ozalp.membership.models.enums.RequestStatus;
 import com.ozalp.organization.business.dtos.responses.OrganizationResponse;
 import lombok.Getter;
@@ -12,7 +12,7 @@ public class MembershipRequestResponse {
 
     private int id;
 
-    private UserProfileResponse userProfile;
+    private UserProfileSimpleResponse userProfile;
 
     private OrganizationResponse organization;
 

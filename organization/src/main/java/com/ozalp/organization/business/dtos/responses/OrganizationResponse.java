@@ -1,6 +1,6 @@
 package com.ozalp.organization.business.dtos.responses;
 
-import com.ozalp.auth.business.dtos.responses.UserProfileResponse;
+import com.ozalp.auth.business.dtos.responses.UserProfileSimpleResponse;
 import com.ozalp.organization.models.enums.OrganizationStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ public class OrganizationResponse {
 
     private int id;
 
-    private UserProfileResponse owner;
+    private UserProfileSimpleResponse owner;
 
     private String name;
 
