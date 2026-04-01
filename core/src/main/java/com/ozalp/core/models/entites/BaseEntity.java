@@ -2,6 +2,8 @@ package com.ozalp.core.models.entites;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -14,27 +16,21 @@ public abstract class BaseEntity {
     private int id;
 
     @Column
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @Column
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
     @Column
-    private LocalDateTime deletedAt;
+    private boolean deleted = false;
 
-    @PrePersist
-    private void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    private void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
+    @Column
+    private boolean showable = true;
 
     public void markAsDelete() {
-        this.deletedAt = LocalDateTime.now();
+        this.deleted = true;
     }
 
 }
