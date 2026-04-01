@@ -40,6 +40,9 @@ public final class ApiParams {
     }
 
     public final static class AthleteProgress {
+        public static final String DAILY_MISSIONS = "/daily-missions";
+        public static final String TOTAL_POINT_THIS_MONTH = "/total-point-this-month";
+        public static final String ACHIEVEMENT_PERCENTAGE_THIS_MONTH = "/achievement-percentage-this-month";
     }
 
     public final static class CoachingAssignment {
