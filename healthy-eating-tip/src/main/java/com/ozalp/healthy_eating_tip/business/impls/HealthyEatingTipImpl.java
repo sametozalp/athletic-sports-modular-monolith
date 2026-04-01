@@ -3,6 +3,7 @@ package com.ozalp.healthy_eating_tip.business.impls;
 import com.ozalp.core.managers.BaseImpl;
 import com.ozalp.healthy_eating_tip.business.dtos.requests.CreateHealthyEatingTipRequest;
 import com.ozalp.healthy_eating_tip.business.dtos.responses.HealthyEatingTipResponse;
+import com.ozalp.healthy_eating_tip.business.mappers.HealthyEatingTipMapper;
 import com.ozalp.healthy_eating_tip.business.services.HealthyEatingTipService;
 import com.ozalp.healthy_eating_tip.dataAccess.HealthyEatingTipRepository;
 import com.ozalp.healthy_eating_tip.models.entities.HealthyEatingTip;
@@ -18,15 +19,12 @@ import java.util.List;
 public class HealthyEatingTipImpl extends BaseImpl<HealthyEatingTip> implements HealthyEatingTipService {
 
     private final HealthyEatingTipRepository repository;
+    private final HealthyEatingTipMapper mapper;
 
     @Override
     public HealthyEatingTipResponse create(CreateHealthyEatingTipRequest request) {
         HealthyEatingTip healthyEatingTip = new HealthyEatingTip(request.getTitle(), request.getDescription());
-        HealthyEatingTip saved = repository.save(healthyEatingTip);
-        return HealthyEatingTipResponse.builder()
-                .title(saved.getTitle())
-                .description(saved.getDescription())
-                .build();
+        return mapper.toResponse(repository.save(healthyEatingTip));
     }
 
     @Override
@@ -34,12 +32,7 @@ public class HealthyEatingTipImpl extends BaseImpl<HealthyEatingTip> implements 
         List<HealthyEatingTip> list = repository.getRandomTip(PageRequest.of(0, 1));
 
         if (!list.isEmpty()) {
-            HealthyEatingTip healthyEatingTip = list.get(0);
-            return HealthyEatingTipResponse.builder()
-                    .title(healthyEatingTip.getTitle())
-                    .description(healthyEatingTip.getDescription())
-                    .icon(healthyEatingTip.getIcon())
-                    .build();
+            return mapper.toResponse(list.getFirst());
         }
         return null;
     }
