@@ -8,11 +8,11 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "training_item_tasks")
+@Table(name = "training_program_items")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
-public class TrainingItemTask extends BaseEntity {
+public class TrainingProgramItem extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "training_program_id", nullable = false)

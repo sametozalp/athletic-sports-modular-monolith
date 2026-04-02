@@ -1,11 +1,11 @@
 package com.ozalp.training.business.mappers;
 
 import com.ozalp.training.business.dtos.responses.TrainingItemTaskResponse;
-import com.ozalp.training.models.entities.TrainingItemTask;
+import com.ozalp.training.models.entities.TrainingProgramItem;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface TrainingItemMapper {
+public interface TrainingProgramItemMapper {
 
-    TrainingItemTaskResponse toResponse(TrainingItemTask trainingItemTask);
+    TrainingItemTaskResponse toResponse(TrainingProgramItem trainingProgramItem);
 }

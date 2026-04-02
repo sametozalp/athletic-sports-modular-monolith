@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "meal_item_tasks")
+@Table(name = "meal_training_program_items")
 @Getter
 @Setter
 @NoArgsConstructor
-public class MealItemTask extends TrainingItemTask {
+public class MealTrainingProgramItem extends TrainingProgramItem {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

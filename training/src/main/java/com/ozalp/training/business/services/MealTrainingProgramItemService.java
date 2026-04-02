@@ -3,9 +3,9 @@ package com.ozalp.training.business.services;
 import com.ozalp.core.services.BaseService;
 import com.ozalp.training.business.dtos.requests.CreateMealItemTaskRequest;
 import com.ozalp.training.business.dtos.responses.MealItemResponse;
-import com.ozalp.training.models.entities.MealItemTask;
+import com.ozalp.training.models.entities.MealTrainingProgramItem;
 
-public interface MealItemService extends BaseService<MealItemTask> {
+public interface MealTrainingProgramItemService extends BaseService<MealTrainingProgramItem> {
 
     MealItemResponse create(CreateMealItemTaskRequest request);
 }

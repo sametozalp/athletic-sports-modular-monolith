@@ -3,13 +3,13 @@ package com.ozalp.training.business.impls;
 import com.ozalp.core.managers.BaseImpl;
 import com.ozalp.training.business.dtos.requests.CreateMealItemTaskRequest;
 import com.ozalp.training.business.dtos.responses.MealItemResponse;
-import com.ozalp.training.business.mappers.MealItemMapper;
+import com.ozalp.training.business.mappers.MealTrainingProgramItemMapper;
 import com.ozalp.training.business.services.AthleteProgressService;
-import com.ozalp.training.business.services.MealItemService;
+import com.ozalp.training.business.services.MealTrainingProgramItemService;
 import com.ozalp.training.business.services.TrainingProgramService;
 import com.ozalp.training.dataAccess.MealItemRepository;
 import com.ozalp.training.models.entities.AthleteProgress;
-import com.ozalp.training.models.entities.MealItemTask;
+import com.ozalp.training.models.entities.MealTrainingProgramItem;
 import com.ozalp.training.models.entities.TrainingProgram;
 import com.ozalp.training.models.enums.AthleteProgressStatus;
 import lombok.RequiredArgsConstructor;
@@ -19,10 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class MealItemTaskImpl extends BaseImpl<MealItemTask> implements MealItemService {
+public class MealTrainingProgramItemImpl extends BaseImpl<MealTrainingProgramItem> implements MealTrainingProgramItemService {
 
     private final MealItemRepository repository;
-    private final MealItemMapper mapper;
+    private final MealTrainingProgramItemMapper mapper;
     private final TrainingProgramService trainingProgramService;
     private final AthleteProgressService athleteProgressService;
 
@@ -30,14 +30,14 @@ public class MealItemTaskImpl extends BaseImpl<MealItemTask> implements MealItem
     @Override
     public MealItemResponse create(CreateMealItemTaskRequest request) {
         TrainingProgram trainingProgram = trainingProgramService.findById(request.getTrainingProgramId());
-        MealItemTask mealItemTask = mapper.toEntity(request, trainingProgram);
+        MealTrainingProgramItem mealItemTask = mapper.toEntity(request, trainingProgram);
         AthleteProgress athleteProgress = new AthleteProgress(mealItemTask, AthleteProgressStatus.NOT_COMPLETED, mealItemTask.getPoint());
         athleteProgressService.save(athleteProgress);
         return mapper.toResponse(repository.save(mealItemTask));
     }
 
     @Override
-    protected JpaRepository<MealItemTask, Integer> getRepository() {
+    protected JpaRepository<MealTrainingProgramItem, Integer> getRepository() {
         return repository;
     }
 }

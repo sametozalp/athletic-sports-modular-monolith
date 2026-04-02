@@ -3,7 +3,7 @@ package com.ozalp.training.business.mappers;
 import com.ozalp.training.business.dtos.requests.CreateAthleteProgressRequest;
 import com.ozalp.training.business.dtos.responses.AthleteProgressResponse;
 import com.ozalp.training.models.entities.AthleteProgress;
-import com.ozalp.training.models.entities.TrainingItemTask;
+import com.ozalp.training.models.entities.TrainingProgramItem;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -12,8 +12,8 @@ public interface AthleteProgressMapper {
 
     AthleteProgressResponse toResponse(AthleteProgress athleteProgress);
 
-    @Mapping(target = "trainingItemTask", source = "trainingItemTask")
+    @Mapping(target = "trainingProgramItem", source = "trainingProgramItem")
     @Mapping(target = "organizationId", source = "request.organizationId")
-    @Mapping(target = "pointsEarned", source = "trainingItemTask.point")
-    AthleteProgress toEntity(CreateAthleteProgressRequest request, TrainingItemTask trainingItemTask);
+    @Mapping(target = "pointsEarned", source = "trainingProgramItem.point")
+    AthleteProgress toEntity(CreateAthleteProgressRequest request, TrainingProgramItem trainingProgramItem);
 }

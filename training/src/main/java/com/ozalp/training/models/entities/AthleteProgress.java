@@ -19,7 +19,7 @@ public class AthleteProgress extends BaseEntity {
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "training_item_id", nullable = false)
-    private TrainingItemTask trainingItemTask;
+    private TrainingProgramItem trainingProgramItem;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -31,8 +31,8 @@ public class AthleteProgress extends BaseEntity {
     @Column
     private int organizationId;
 
-    public AthleteProgress(TrainingItemTask trainingItemTask, AthleteProgressStatus status, int pointsEarned) {
-        this.trainingItemTask = trainingItemTask;
+    public AthleteProgress(TrainingProgramItem trainingProgramItem, AthleteProgressStatus status, int pointsEarned) {
+        this.trainingProgramItem = trainingProgramItem;
         this.status = status;
         this.pointsEarned = pointsEarned;
     }
