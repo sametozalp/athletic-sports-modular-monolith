@@ -11,6 +11,7 @@ import com.ozalp.training.business.services.TrainingItemTaskService;
 import com.ozalp.training.dataAccess.AthleteProgressRepository;
 import com.ozalp.training.models.entities.AthleteProgress;
 import com.ozalp.training.models.entities.TrainingItemTask;
+import com.ozalp.training.models.enums.AthleteProgressStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,13 @@ public class AthleteProgressImpl extends BaseImpl<AthleteProgress> implements At
                 .stream()
                 .map(mapper::toResponse)
                 .toList();
+    }
+
+    @Override
+    public void updateStatus(int id, AthleteProgressStatus athleteProgressStatus) {
+        AthleteProgress athleteProgress = findById(id);
+        athleteProgress.setStatus(athleteProgressStatus);
+        save(athleteProgress);
     }
 
     @Override
