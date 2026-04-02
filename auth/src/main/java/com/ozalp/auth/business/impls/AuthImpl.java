@@ -6,6 +6,7 @@ import com.ozalp.auth.business.mappers.AuthMapper;
 import com.ozalp.auth.business.services.AuthService;
 import com.ozalp.auth.business.services.RoleService;
 import com.ozalp.auth.business.services.UserRoleService;
+import com.ozalp.auth.config.RootAdminConfig;
 import com.ozalp.auth.dataAccess.AuthRepository;
 import com.ozalp.auth.models.entities.Auth;
 import com.ozalp.auth.models.entities.Role;
@@ -28,6 +29,7 @@ public class AuthImpl extends BaseImpl<Auth> implements AuthService {
     private final AuthMapper mapper;
     private final RoleService roleService;
     private final UserRoleService userRoleService;
+    private final RootAdminConfig rootAdminConfig;
 
     @Transactional
     @Override
@@ -48,11 +50,11 @@ public class AuthImpl extends BaseImpl<Auth> implements AuthService {
         Optional<Auth> admin = repository.findByUsername("admin");
         if (!admin.isPresent()) {
             Auth auth = new Auth();
-            auth.setEmail("admin@gmail.com");
-            auth.setUsername("admin");
-            auth.setPassword("123456");
+            auth.setEmail(rootAdminConfig.getEmail());
+            auth.setUsername(rootAdminConfig.getUsername());
+            auth.setPassword(rootAdminConfig.getPassword());
             UserProfile userProfile = new UserProfile();
-            userProfile.setName("admin");
+            userProfile.setName(rootAdminConfig.getName());
             auth.setUserProfile(userProfile);
             repository.save(auth);
 
