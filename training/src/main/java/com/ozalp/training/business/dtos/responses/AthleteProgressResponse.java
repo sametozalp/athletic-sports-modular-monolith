@@ -13,7 +13,7 @@ public class AthleteProgressResponse {
 
     private int id;
 
-    private TrainingItemTaskResponse trainingItemTask;
+    private TrainingProgramItemResponse trainingItemTask;
 
     private AthleteProgressStatus status;
 

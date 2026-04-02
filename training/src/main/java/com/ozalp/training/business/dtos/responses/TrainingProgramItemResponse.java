@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class TrainingItemTaskResponse {
+public class TrainingProgramItemResponse {
 
     private int id;
 

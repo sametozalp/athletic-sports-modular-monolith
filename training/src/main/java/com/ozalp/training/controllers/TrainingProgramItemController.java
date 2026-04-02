@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(ApiConst.ApiPath.TRAINING_ITEM_TASK)
 @RequiredArgsConstructor
-public class TrainingItemController {
+public class TrainingProgramItemController {
 
     private final TrainingProgramItemService trainingProgramItemService;
 

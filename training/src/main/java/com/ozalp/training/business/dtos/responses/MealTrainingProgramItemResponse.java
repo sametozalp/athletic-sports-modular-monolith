@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MealItemResponse {
+public class MealTrainingProgramItemResponse {
 
     private int id;
 
