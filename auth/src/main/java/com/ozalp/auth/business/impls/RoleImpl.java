@@ -6,6 +6,7 @@ import com.ozalp.auth.business.mappers.RoleMapper;
 import com.ozalp.auth.business.services.RoleService;
 import com.ozalp.auth.dataAccess.RoleRepository;
 import com.ozalp.auth.models.entities.Role;
+import com.ozalp.auth.models.enums.RoleEnum;
 import com.ozalp.core.managers.BaseImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,8 +22,8 @@ public class RoleImpl extends BaseImpl<Role> implements RoleService {
     private final RoleMapper mapper;
 
     @Override
-    public Role findByName(String name) {
-        return repository.findByName(name);
+    public Role findByName(RoleEnum roleEnum) {
+        return repository.findByName(roleEnum);
     }
 
     @Override

@@ -6,5 +6,5 @@ public enum RoleEnum {
     COACH,
     ORGANIZATION_ADMIN,
     ORGANIZATION_SUB_ADMIN,
-    SUPER_ADMIN,
+    SUPER_ROOT_ADMIN,
 }

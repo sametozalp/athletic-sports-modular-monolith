@@ -4,9 +4,14 @@ import com.ozalp.auth.business.dtos.requests.RegisterRequest;
 import com.ozalp.auth.business.dtos.responses.AuthResponse;
 import com.ozalp.auth.business.mappers.AuthMapper;
 import com.ozalp.auth.business.services.AuthService;
+import com.ozalp.auth.business.services.RoleService;
+import com.ozalp.auth.business.services.UserRoleService;
 import com.ozalp.auth.dataAccess.AuthRepository;
 import com.ozalp.auth.models.entities.Auth;
+import com.ozalp.auth.models.entities.Role;
 import com.ozalp.auth.models.entities.UserProfile;
+import com.ozalp.auth.models.entities.UserRole;
+import com.ozalp.auth.models.enums.RoleEnum;
 import com.ozalp.core.managers.BaseImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,6 +26,8 @@ public class AuthImpl extends BaseImpl<Auth> implements AuthService {
 
     private final AuthRepository repository;
     private final AuthMapper mapper;
+    private final RoleService roleService;
+    private final UserRoleService userRoleService;
 
     @Transactional
     @Override
@@ -32,11 +39,11 @@ public class AuthImpl extends BaseImpl<Auth> implements AuthService {
         profile.setName("user");
         reqAuth.setUserProfile(profile);
 
-        Auth saved = repository.save(reqAuth);
-        return mapper.toResponse(saved);
+        return mapper.toResponse(repository.save(reqAuth));
     }
 
     @Override
+    @Transactional
     public void createRootAdmin() {
         Optional<Auth> admin = repository.findByUsername("admin");
         if (!admin.isPresent()) {
@@ -48,6 +55,9 @@ public class AuthImpl extends BaseImpl<Auth> implements AuthService {
             userProfile.setName("admin");
             auth.setUserProfile(userProfile);
             repository.save(auth);
+
+            roleService.save(new Role(RoleEnum.SUPER_ROOT_ADMIN));
+            userRoleService.save(new UserRole(userProfile, roleService.findByName(RoleEnum.SUPER_ROOT_ADMIN)));
         }
     }
 
