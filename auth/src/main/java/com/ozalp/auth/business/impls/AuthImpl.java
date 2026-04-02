@@ -6,6 +6,7 @@ import com.ozalp.auth.business.mappers.AuthMapper;
 import com.ozalp.auth.business.services.AuthService;
 import com.ozalp.auth.business.services.RoleService;
 import com.ozalp.auth.business.services.UserRoleService;
+import com.ozalp.auth.config.DefaultUserConfig;
 import com.ozalp.auth.config.RootAdminConfig;
 import com.ozalp.auth.dataAccess.AuthRepository;
 import com.ozalp.auth.models.entities.Auth;
@@ -30,6 +31,7 @@ public class AuthImpl extends BaseImpl<Auth> implements AuthService {
     private final RoleService roleService;
     private final UserRoleService userRoleService;
     private final RootAdminConfig rootAdminConfig;
+    private final DefaultUserConfig defaultUserConfig;
 
     @Transactional
     @Override
@@ -38,7 +40,7 @@ public class AuthImpl extends BaseImpl<Auth> implements AuthService {
 
         UserProfile profile = new UserProfile();
         profile.setAuth(reqAuth);
-        profile.setName("user");
+        profile.setName(defaultUserConfig.getName());
         reqAuth.setUserProfile(profile);
 
         return mapper.toResponse(repository.save(reqAuth));
