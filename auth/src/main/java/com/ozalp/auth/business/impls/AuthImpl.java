@@ -49,7 +49,7 @@ public class AuthImpl extends BaseImpl<Auth> implements AuthService {
     @Override
     @Transactional
     public void createRootAdmin() {
-        Optional<Auth> admin = repository.findByUsername("admin");
+        Optional<Auth> admin = repository.findByUsername(rootAdminConfig.getUsername());
         if (!admin.isPresent()) {
             Auth auth = new Auth();
             auth.setEmail(rootAdminConfig.getEmail());
