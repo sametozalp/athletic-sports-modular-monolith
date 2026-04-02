@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(ApiConst.ApiPath.MEAL_ITEM_TASK)
+@RequestMapping(ApiConst.ApiPath.MEAL_TRAINING_PROGRAM_ITEM)
 @RequiredArgsConstructor
 public class MealTrainingProgramItemController {
 

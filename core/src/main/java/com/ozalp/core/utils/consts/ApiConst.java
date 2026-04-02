@@ -32,8 +32,9 @@ public final class ApiConst {
         public final static String ATHLETE_PROGRESS = API + VERSIONS.V1 + "/athleteProgress";
         public final static String COACHING_ASSIGNMENT = API + VERSIONS.V1 + "/coachingAssignment";
         public final static String EXERCISE = API + VERSIONS.V1 + "/exercise";
-        public final static String MEAL_ITEM_TASK = API + VERSIONS.V1 + "/mealItemTask";
-        public final static String TRAINING_ITEM_TASK = API + VERSIONS.V1 + "/trainingItemTask";
+        public final static String MEAL_TRAINING_PROGRAM_ITEM = API + VERSIONS.V1 + "/mealTrainingProgramItem";
+        public final static String TRAINING_PROGRAM_ITEM = API + VERSIONS.V1 + "/trainingProgramItem";
         public final static String TRAINING_PROGRAM = API + VERSIONS.V1 + "/trainingProgram";
+        public static final String WORKOUT_TRAINING_PROGRAM_ITEM = API + VERSIONS.V1 + "/workoutTrainingProgramItem";
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(ApiConst.ApiPath.TRAINING_ITEM_TASK)
+@RequestMapping(ApiConst.ApiPath.TRAINING_PROGRAM_ITEM)
 @RequiredArgsConstructor
 public class TrainingProgramItemController {
 
