@@ -23,7 +23,7 @@ public class UserRoleController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping(ApiParams.Base.USER_ID)
+    @GetMapping(ApiParams.Base.USER_ID + ApiParams.Base.ALL)
     ResponseEntity<?> getAll(@PathVariable int userId) {
         return ResponseEntity.ok(userRoleService.getAllRoles(userId));
     }
