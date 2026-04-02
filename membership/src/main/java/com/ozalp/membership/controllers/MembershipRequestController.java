@@ -19,7 +19,7 @@ public class MembershipRequestController {
 
     private final MembershipRequestService membershipRequestService;
 
-    @PostMapping(ApiParams.Base.ID)
+    @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateMembershipRequestRequest request) {
         return ResponseEntity.ok(membershipRequestService.create(request));
     }

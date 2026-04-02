@@ -16,7 +16,7 @@ public class HealthyEatingTipController {
 
     private final HealthyEatingTipService healthyEatingTipService;
 
-    @PostMapping(ApiParams.Base.ID)
+    @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateHealthyEatingTipRequest request) {
         return ResponseEntity.ok(healthyEatingTipService.create(request));
     }

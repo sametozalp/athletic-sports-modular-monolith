@@ -1,7 +1,6 @@
 package com.ozalp.training.controllers;
 
 import com.ozalp.core.utils.consts.ApiConst;
-import com.ozalp.core.utils.consts.ApiParams;
 import com.ozalp.training.business.dtos.requests.CreateTrainingProgramRequest;
 import com.ozalp.training.business.services.TrainingProgramService;
 import jakarta.validation.Valid;
@@ -19,7 +18,7 @@ public class TrainingProgramController {
 
     private final TrainingProgramService trainingProgramService;
 
-    @PostMapping(ApiParams.Base.ID)
+    @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateTrainingProgramRequest request) {
         return ResponseEntity.ok(trainingProgramService.create(request));
     }

@@ -17,7 +17,7 @@ public class CoachingAssignmentController {
 
     private final CoachingAssignmentService coachingAssignmentService;
 
-    @PostMapping(ApiParams.Base.ID)
+    @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateCoachingAssignmentRequest request) {
         coachingAssignmentService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body("");

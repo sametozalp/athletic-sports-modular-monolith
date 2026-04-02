@@ -16,7 +16,7 @@ public class AthleteProgressController {
 
     private final AthleteProgressService athleteProgressService;
 
-    @PostMapping(ApiParams.Base.ID)
+    @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateAthleteProgressRequest request) {
         return ResponseEntity.ok(athleteProgressService.create(request));
     }

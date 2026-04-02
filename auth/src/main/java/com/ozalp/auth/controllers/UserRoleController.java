@@ -17,7 +17,7 @@ public class UserRoleController {
 
     private final UserRoleService userRoleService;
 
-    @PostMapping(ApiParams.Base.ID)
+    @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateUserRoleRequest request) {
         userRoleService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
