@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class RoleImpl extends BaseImpl<Role> implements RoleService {
@@ -27,6 +29,14 @@ public class RoleImpl extends BaseImpl<Role> implements RoleService {
     public RoleResponse create(CreateRoleRequest request) {
         Role role = mapper.toEntity(request);
         return mapper.toResponse(repository.save(role));
+    }
+
+    @Override
+    public List<RoleResponse> getAllRoles() {
+        return repository.findAll()
+                .stream()
+                .map(mapper::toResponse)
+                .toList();
     }
 
     @Override
