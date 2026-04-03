@@ -14,6 +14,6 @@ public interface AthleteProgressMapper {
 
     @Mapping(target = "trainingProgramItem", source = "trainingProgramItem")
     @Mapping(target = "organizationId", source = "request.organizationId")
-    @Mapping(target = "pointsEarned", source = "trainingProgramItem.point")
+    @Mapping(target = "points", source = "trainingProgramItem.points")
     AthleteProgress toEntity(CreateAthleteProgressRequest request, TrainingProgramItem trainingProgramItem);
 }

@@ -19,7 +19,7 @@ public class TrainingProgramItem extends BaseEntity {
     private TrainingProgram trainingProgram;
 
     @Column(nullable = false)
-    private int point; // automatic calculate (like reps * 3 )
+    private int points; // automatic calculate (like reps * 3 )
 
     @Column(nullable = false)
     private LocalDate date;

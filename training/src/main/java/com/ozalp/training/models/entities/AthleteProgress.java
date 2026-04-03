@@ -26,14 +26,14 @@ public class AthleteProgress extends BaseEntity {
     private AthleteProgressStatus status;
 
     @Column(nullable = false)
-    private int pointsEarned;
+    private int points;
 
     @Column
     private int organizationId;
 
-    public AthleteProgress(TrainingProgramItem trainingProgramItem, AthleteProgressStatus status, int pointsEarned) {
+    public AthleteProgress(TrainingProgramItem trainingProgramItem, AthleteProgressStatus status, int points) {
         this.trainingProgramItem = trainingProgramItem;
         this.status = status;
-        this.pointsEarned = pointsEarned;
+        this.points = points;
     }
 }

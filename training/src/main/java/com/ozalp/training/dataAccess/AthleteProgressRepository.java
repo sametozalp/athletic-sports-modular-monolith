@@ -10,7 +10,7 @@ import java.util.List;
 public interface AthleteProgressRepository extends JpaRepository<AthleteProgress, Integer> {
 
     @Query("""
-                select coalesce(sum(ap.pointsEarned), 0)
+                select coalesce(sum(ap.points), 0)
                 from AthleteProgress ap
                 where ap.status = com.ozalp.training.models.enums.AthleteProgressStatus.COMPLETED
                   and ap.trainingProgramItem.trainingProgram.athleteUserProfileId = :userProfileId
