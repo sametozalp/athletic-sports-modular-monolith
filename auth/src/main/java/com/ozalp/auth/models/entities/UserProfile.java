@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Setter
 public class UserProfile extends BaseEntity {
 
-    @OneToOne(mappedBy = "userProfile", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "userProfile")
     private Auth auth;
 
     @Column(nullable = false)
