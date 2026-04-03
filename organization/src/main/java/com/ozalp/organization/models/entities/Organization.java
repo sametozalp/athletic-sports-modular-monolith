@@ -1,7 +1,6 @@
 package com.ozalp.organization.models.entities;
 
 import com.ozalp.core.models.entites.BaseEntity;
-import com.ozalp.organization.models.enums.OrganizationStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Organization extends BaseEntity {
 
     @Column(nullable = false)
@@ -25,8 +25,7 @@ public class Organization extends BaseEntity {
     @Column
     private String logoUrl;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private OrganizationStatus status = OrganizationStatus.ACTIVE;
+    private boolean active = true;
 
 }
