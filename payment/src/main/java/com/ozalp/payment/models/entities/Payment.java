@@ -12,14 +12,21 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
-@Table(name = "organization_payments")
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "payments")
 @Getter
 @Setter
-public class OrganizationPayment extends BaseEntity { // FOR LOGS
+@NoArgsConstructor
+@AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Payment extends BaseEntity {
 
     @Column(nullable = false)
-    private int organizationId;
+    private BigDecimal amount;
 
+    @Column(nullable = false)
+    private Instant paymentDate;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus status;
 }
