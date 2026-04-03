@@ -25,6 +25,8 @@
 		<module>motivation-sentence</module>
 		<module>mail</module>
 		<module>app</module>
+		<module>payment</module>
+		<module>subscription</module>
 	</modules>
 
 	<properties>
