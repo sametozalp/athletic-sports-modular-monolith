@@ -1,6 +1,5 @@
 package com.ozalp.subscription.models.entities;
 
-import com.ozalp.core.models.entites.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -15,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class OrganizationSubscription extends BaseEntity {
+public class OrganizationSubscription extends Subscription {
 
     @Column(nullable = false)
     private int organizationId;

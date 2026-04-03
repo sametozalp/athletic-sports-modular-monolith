@@ -44,6 +44,16 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>com.ozalp</groupId>
+			<artifactId>payment</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ozalp</groupId>
+			<artifactId>subscription</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
