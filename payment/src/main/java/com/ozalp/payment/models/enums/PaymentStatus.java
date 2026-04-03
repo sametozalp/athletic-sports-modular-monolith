@@ -1,4 +1,4 @@
-package com.ozalp.organization.models.enums;
+package com.ozalp.payment.models.enums;
 
 public enum PaymentStatus {
     SUCCESS,

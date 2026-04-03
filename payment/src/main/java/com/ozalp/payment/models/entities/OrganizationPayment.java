@@ -1,7 +1,7 @@
-package com.ozalp.organization.models.entities;
+package com.ozalp.payment.models.entities;
 
 import com.ozalp.core.models.entites.BaseEntity;
-import com.ozalp.organization.models.enums.PaymentStatus;
+import com.ozalp.payment.models.enums.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,24 +12,23 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
-@Table(name = "payments")
+@Table(name = "organization_payments")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Payment extends BaseEntity { // FOR LOGS
+public class OrganizationPayment extends BaseEntity { // FOR LOGS
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organization_id", nullable = false)
-    private Organization organization;
+    @Column(nullable = false)
+    private int organizationId;
 
-    @Column
+    @Column(nullable = false)
     private BigDecimal amount;
 
-    @Column
+    @Column(nullable = false)
     private Instant paymentDate;
 
-    @Column
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
 

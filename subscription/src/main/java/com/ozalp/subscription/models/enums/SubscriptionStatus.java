@@ -1,4 +1,4 @@
-package com.ozalp.organization.models.enums;
+package com.ozalp.subscription.models.enums;
 
 public enum SubscriptionStatus {
     ACTIVE,
