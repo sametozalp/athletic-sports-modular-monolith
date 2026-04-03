@@ -1,7 +1,6 @@
 package com.ozalp.organization.models.entities;
 
 import com.ozalp.core.models.entites.BaseEntity;
-import com.ozalp.organization.models.enums.SubscriptionStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,8 +26,4 @@ public class Subscription extends BaseEntity {
 
     @Column
     private Instant endDate;
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    private SubscriptionStatus status = SubscriptionStatus.ACTIVE;
 }
