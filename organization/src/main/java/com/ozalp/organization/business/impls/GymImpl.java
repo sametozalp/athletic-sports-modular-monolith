@@ -23,7 +23,7 @@ public class GymImpl extends BaseImpl<Gym> implements GymService {
 
     @Override
     protected JpaRepository<Gym, Integer> getRepository() {
-        return null;
+        return repository;
     }
 
     @Override

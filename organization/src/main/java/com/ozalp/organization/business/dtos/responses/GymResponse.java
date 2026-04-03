@@ -1,7 +1,6 @@
 package com.ozalp.organization.business.dtos.responses;
 
 import com.ozalp.auth.business.dtos.responses.UserProfileSimpleResponse;
-import com.ozalp.organization.models.enums.SubscriptionStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +15,5 @@ public class GymResponse {
     private String name;
 
     private String logoUrl;
-
-    private SubscriptionStatus status;
 
 }
