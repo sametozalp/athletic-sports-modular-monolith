@@ -1,9 +1,8 @@
 package com.ozalp.membership.controllers;
 
 import com.ozalp.core.utils.consts.ApiConst;
-import com.ozalp.core.utils.consts.ApiParams;
-import com.ozalp.membership.business.dtos.requests.CreateMembershipRequest;
-import com.ozalp.membership.business.services.MembershipService;
+import com.ozalp.membership.business.dtos.requests.CreateUserMembershipRequest;
+import com.ozalp.membership.business.services.UserMembershipService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(ApiConst.ApiPath.MEMBERSHIP)
 @RequiredArgsConstructor
-public class MembershipController {
+public class UserMembershipController {
 
-    private final MembershipService membershipService;
+    private final UserMembershipService userMembershipService;
 
     @PostMapping
-    ResponseEntity<?> create(@RequestBody @Valid CreateMembershipRequest request) {
-        return ResponseEntity.ok(membershipService.create(request));
+    ResponseEntity<?> create(@RequestBody @Valid CreateUserMembershipRequest request) {
+        return ResponseEntity.ok(userMembershipService.create(request));
     }
 }

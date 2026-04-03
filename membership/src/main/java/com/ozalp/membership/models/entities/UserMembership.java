@@ -11,12 +11,12 @@ import lombok.Setter;
 import java.time.Instant;
 
 @Entity
-@Table(name = "memberships")
+@Table(name = "user_memberships")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Membership extends BaseEntity {
+public class UserMembership extends BaseEntity {
 
     @Column(nullable = false)
     private int organizationId;

@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "membership_requests")
+@Table(name = "user_membership_requests")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MembershipRequest extends BaseEntity {
+public class UserMembershipRequest extends BaseEntity {
 
     @Column(nullable = false)
     private int userProfileId;

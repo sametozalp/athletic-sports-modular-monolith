@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateMembershipRequest {
+public class CreateUserMembershipRequest {
 
     private int organizationId;
 

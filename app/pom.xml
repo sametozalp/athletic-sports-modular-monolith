@@ -20,7 +20,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.ozalp</groupId>
-			<artifactId>membership</artifactId>
+			<artifactId>userMembership</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

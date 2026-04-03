@@ -18,7 +18,7 @@
 	<modules>
 		<module>core</module>
 		<module>auth</module>
-		<module>membership</module>
+		<module>userMembership</module>
 		<module>training</module>
 		<module>organization</module>
 		<module>healthy-eating-tip</module>
