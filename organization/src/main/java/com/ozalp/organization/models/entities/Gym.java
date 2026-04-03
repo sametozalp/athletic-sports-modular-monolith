@@ -12,4 +12,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Gym extends Organization {
+
+    public Gym(int ownerUserProfileId, String name, String logoUrl, boolean active) {
+        super(ownerUserProfileId, name, logoUrl, active);
+    }
 }

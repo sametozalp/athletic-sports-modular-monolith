@@ -60,8 +60,8 @@ public class AuthImpl extends BaseImpl<Auth> implements AuthService {
             auth.setUserProfile(userProfile);
             repository.save(auth);
 
-            roleService.save(new Role(RoleEnum.SUPER_ROOT_ADMIN));
-            userRoleService.save(new UserRole(userProfile, roleService.findByName(RoleEnum.SUPER_ROOT_ADMIN)));
+            roleService.add(new Role(RoleEnum.SUPER_ROOT_ADMIN));
+            userRoleService.add(new UserRole(userProfile, roleService.findByName(RoleEnum.SUPER_ROOT_ADMIN)));
         }
     }
 

@@ -19,7 +19,7 @@ public class WorkoutTrainingProgramItemImpl extends BaseImpl<WorkoutTrainingProg
 
     @Override
     public void create(CreateWorkoutItemTaskRequest request) {
-        save(mapper.toEntity(request));
+        add(mapper.toEntity(request));
     }
 
     @Override

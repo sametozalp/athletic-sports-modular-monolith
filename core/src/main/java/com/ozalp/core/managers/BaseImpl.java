@@ -19,7 +19,7 @@ public abstract class BaseImpl<T extends BaseEntity> implements BaseService<T> {
     }
 
     @Override
-    public T save(T t) {
+    public T add(T t) {
         return getRepository().save(t);
     }
 

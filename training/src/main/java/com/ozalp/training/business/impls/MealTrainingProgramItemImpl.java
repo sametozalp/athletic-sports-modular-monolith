@@ -32,7 +32,7 @@ public class MealTrainingProgramItemImpl extends BaseImpl<MealTrainingProgramIte
         TrainingProgram trainingProgram = trainingProgramService.findById(request.getTrainingProgramId());
         MealTrainingProgramItem mealItemTask = mapper.toEntity(request, trainingProgram);
         AthleteProgress athleteProgress = new AthleteProgress(mealItemTask, AthleteProgressStatus.NOT_COMPLETED, mealItemTask.getPoints());
-        athleteProgressService.save(athleteProgress);
+        athleteProgressService.add(athleteProgress);
         return mapper.toResponse(repository.save(mealItemTask));
     }
 

@@ -6,7 +6,7 @@ public interface BaseService<T extends BaseEntity> {
 
     T findById(int id);
 
-    T save(T t);
+    T add(T t);
 
     void delete(int id);
 }

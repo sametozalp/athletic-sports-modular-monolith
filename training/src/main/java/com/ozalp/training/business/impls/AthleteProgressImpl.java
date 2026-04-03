@@ -25,7 +25,7 @@ public class AthleteProgressImpl extends BaseImpl<AthleteProgress> implements At
     public void updateStatus(int id, AthleteProgressStatus athleteProgressStatus) {
         AthleteProgress athleteProgress = findById(id);
         athleteProgress.setStatus(athleteProgressStatus);
-        save(athleteProgress);
+        add(athleteProgress);
     }
 
     @Override
