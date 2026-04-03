@@ -1,7 +1,7 @@
 package com.ozalp.membership.business.dtos.responses;
 
 import com.ozalp.auth.business.dtos.responses.UserProfileSimpleResponse;
-import com.ozalp.organization.business.dtos.responses.OrganizationResponse;
+import com.ozalp.organization.business.dtos.responses.GymResponse;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +15,7 @@ public class UserMembershipResponse {
 
     private UserProfileSimpleResponse userProfile;
 
-    private OrganizationResponse organization;
+    private GymResponse organization;
 
     private Instant joinedAt;
 

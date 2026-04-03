@@ -3,18 +3,19 @@ package com.ozalp.organization.business.mappers;
 import com.ozalp.auth.models.entities.UserProfile;
 import com.ozalp.organization.business.dtos.requests.CreateGymRequest;
 import com.ozalp.organization.business.dtos.responses.GymResponse;
-import com.ozalp.organization.models.entities.Organization;
+import com.ozalp.organization.models.entities.Gym;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface OrganizationMapper {
+public interface GymMapper {
 
-    @Mapping(target = "id", source = "organization.id")
-    @Mapping(target = "name", source = "organization.name")
+    @Mapping(target = "id", source = "gym.id")
+    @Mapping(target = "name", source = "gym.name")
     @Mapping(target = "owner", source = "owner")
-    GymResponse toResponse(Organization organization, UserProfile owner);
+    GymResponse toResponse(Gym gym, UserProfile owner);
 
     @Mapping(target = "ownerUserProfileId", source = "ownerUserProfileId")
-    Organization toEntity(CreateGymRequest request);
+    Gym toEntity(CreateGymRequest request);
+
 }

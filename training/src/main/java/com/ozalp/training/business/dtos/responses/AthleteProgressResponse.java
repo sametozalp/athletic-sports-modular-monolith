@@ -1,6 +1,6 @@
 package com.ozalp.training.business.dtos.responses;
 
-import com.ozalp.organization.business.dtos.responses.OrganizationResponse;
+import com.ozalp.organization.business.dtos.responses.GymResponse;
 import com.ozalp.training.models.enums.AthleteProgressStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +21,6 @@ public class AthleteProgressResponse {
 
     private int pointsEarned;
 
-    private OrganizationResponse organization;
+    private GymResponse organization;
 
 }

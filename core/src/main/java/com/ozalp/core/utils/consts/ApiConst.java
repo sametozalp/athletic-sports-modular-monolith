@@ -27,6 +27,7 @@ public final class ApiConst {
 
         // ORGANIZATION
         public final static String ORGANIZATION = API + VERSIONS.V1 + "/organization";
+        public static final String GYM = API + VERSIONS.V1 + "/gym";
 
         // TRAINING
         public final static String ATHLETE_PROGRESS = API + VERSIONS.V1 + "/athleteProgress";

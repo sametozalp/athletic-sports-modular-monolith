@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateOrganizationRequest {
+public class CreateGymRequest {
 
     private int ownerUserProfileId;
 
