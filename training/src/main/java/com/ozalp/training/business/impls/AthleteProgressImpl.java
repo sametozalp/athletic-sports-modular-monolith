@@ -1,15 +1,11 @@
 package com.ozalp.training.business.impls;
 
 import com.ozalp.core.managers.BaseImpl;
-import com.ozalp.organization.business.services.OrganizationService;
-import com.ozalp.training.business.dtos.requests.CreateAthleteProgressRequest;
 import com.ozalp.training.business.dtos.responses.AthleteProgressResponse;
 import com.ozalp.training.business.mappers.AthleteProgressMapper;
 import com.ozalp.training.business.services.AthleteProgressService;
-import com.ozalp.training.business.services.TrainingProgramItemService;
 import com.ozalp.training.dataAccess.AthleteProgressRepository;
 import com.ozalp.training.models.entities.AthleteProgress;
-import com.ozalp.training.models.entities.TrainingProgramItem;
 import com.ozalp.training.models.enums.AthleteProgressStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,15 +20,12 @@ public class AthleteProgressImpl extends BaseImpl<AthleteProgress> implements At
 
     private final AthleteProgressRepository repository;
     private final AthleteProgressMapper mapper;
-    private final TrainingProgramItemService trainingProgramItemService;
-    private final OrganizationService organizationService;
 
     @Override
-    public AthleteProgressResponse create(CreateAthleteProgressRequest request) {
-        organizationService.findById(request.getOrganizationId());
-        TrainingProgramItem trainingProgramItem = trainingProgramItemService.findById(request.getTrainingItemId());
-        AthleteProgress athleteProgress = mapper.toEntity(request, trainingProgramItem);
-        return mapper.toResponse(repository.save(athleteProgress));
+    public void updateStatus(int id, AthleteProgressStatus athleteProgressStatus) {
+        AthleteProgress athleteProgress = findById(id);
+        athleteProgress.setStatus(athleteProgressStatus);
+        save(athleteProgress);
     }
 
     @Override
@@ -52,13 +45,6 @@ public class AthleteProgressImpl extends BaseImpl<AthleteProgress> implements At
                 .stream()
                 .map(mapper::toResponse)
                 .toList();
-    }
-
-    @Override
-    public void updateStatus(int id, AthleteProgressStatus athleteProgressStatus) {
-        AthleteProgress athleteProgress = findById(id);
-        athleteProgress.setStatus(athleteProgressStatus);
-        save(athleteProgress);
     }
 
     @Override

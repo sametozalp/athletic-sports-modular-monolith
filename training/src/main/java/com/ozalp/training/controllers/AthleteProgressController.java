@@ -16,11 +16,6 @@ public class AthleteProgressController {
 
     private final AthleteProgressService athleteProgressService;
 
-//    @PostMapping
-//    ResponseEntity<?> create(@RequestBody @Valid CreateAthleteProgressRequest request) {
-//        return ResponseEntity.ok(athleteProgressService.create(request));
-//    }
-
     @PatchMapping(ApiParams.Base.ID)
     ResponseEntity<?> updateStatus(@PathVariable int id, @RequestParam AthleteProgressStatus athleteProgressStatus) {
         athleteProgressService.updateStatus(id, athleteProgressStatus);
