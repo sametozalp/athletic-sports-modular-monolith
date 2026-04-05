@@ -37,5 +37,8 @@ public final class ApiConst {
         public final static String TRAINING_PROGRAM_ITEM = API + VERSIONS.V1 + "/trainingProgramItem";
         public final static String TRAINING_PROGRAM = API + VERSIONS.V1 + "/trainingProgram";
         public static final String WORKOUT_TRAINING_PROGRAM_ITEM = API + VERSIONS.V1 + "/workoutTrainingProgramItem";
+
+        // SUBSCRIPTION
+        public static final String SUBSCRIPTION_PLAN = API + VERSIONS.V1 + "/subscriptionPlan";
     }
 }
