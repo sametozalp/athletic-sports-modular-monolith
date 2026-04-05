@@ -1,8 +1,7 @@
 package com.ozalp.organization.business.mappers;
 
-import com.ozalp.auth.models.entities.UserProfile;
 import com.ozalp.organization.business.dtos.requests.CreateGymRequest;
-import com.ozalp.organization.business.dtos.responses.GymResponse;
+import com.ozalp.organization.business.dtos.responses.GymSimpleResponse;
 import com.ozalp.organization.models.entities.Organization;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,8 +11,7 @@ public interface OrganizationMapper {
 
     @Mapping(target = "id", source = "organization.id")
     @Mapping(target = "name", source = "organization.name")
-    @Mapping(target = "owner", source = "owner")
-    GymResponse toResponse(Organization organization, UserProfile owner);
+    GymSimpleResponse toResponse(Organization organization);
 
     @Mapping(target = "ownerUserProfileId", source = "ownerUserProfileId")
     Organization toEntity(CreateGymRequest request);

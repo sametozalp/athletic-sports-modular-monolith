@@ -3,8 +3,7 @@ package com.ozalp.organization.business.impls;
 import com.ozalp.auth.business.services.UserProfileService;
 import com.ozalp.auth.models.entities.UserProfile;
 import com.ozalp.core.managers.BaseImpl;
-import com.ozalp.organization.business.dtos.requests.CreateGymRequest;
-import com.ozalp.organization.business.dtos.responses.GymResponse;
+import com.ozalp.organization.business.dtos.responses.GymSimpleResponse;
 import com.ozalp.organization.business.mappers.OrganizationMapper;
 import com.ozalp.organization.business.services.OrganizationService;
 import com.ozalp.organization.dataAccess.OrganizationRepository;
@@ -22,10 +21,10 @@ public class OrganizationImpl extends BaseImpl<Organization> implements Organiza
     private final UserProfileService userProfileService;
 
     @Override
-    public GymResponse getOrganizationDetail(int id) {
+    public GymSimpleResponse getOrganizationDetail(int id) {
         Organization organization = findById(id);
         UserProfile owner = userProfileService.findById(organization.getOwnerUserProfileId());
-        return mapper.toResponse(organization, owner);
+        return mapper.toResponse(organization);
     }
 
     @Override
