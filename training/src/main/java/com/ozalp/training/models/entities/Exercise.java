@@ -18,7 +18,7 @@ import java.util.List;
 @Setter
 public class Exercise extends BaseEntity {
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
 
     @Column
@@ -28,6 +28,6 @@ public class Exercise extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private List<MuscleGroup> muscleGroup;
 
-    @Column(nullable = false)
-    private int point;
+    @OneToOne(mappedBy = "exercise", cascade = CascadeType.ALL)
+    private ExercisePoint exercisePoint;
 }

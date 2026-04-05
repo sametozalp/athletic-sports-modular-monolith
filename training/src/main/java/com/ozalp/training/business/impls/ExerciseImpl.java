@@ -7,6 +7,7 @@ import com.ozalp.training.business.mappers.ExerciseMapper;
 import com.ozalp.training.business.services.ExerciseService;
 import com.ozalp.training.dataAccess.ExerciseRepository;
 import com.ozalp.training.models.entities.Exercise;
+import com.ozalp.training.models.entities.ExercisePoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class ExerciseImpl extends BaseImpl<Exercise> implements ExerciseService 
     @Override
     public ExerciseResponse create(CreateExerciseRequest request) {
         Exercise exercise = mapper.toEntity(request);
+        ExercisePoint exercisePoint = new ExercisePoint(exercise, request.getPoint());
+        exercise.setExercisePoint(exercisePoint);
         return mapper.toResponse(repository.save(exercise));
     }
 
