@@ -1,9 +1,8 @@
 package com.ozalp.organization.business.impls;
 
-import com.ozalp.auth.business.services.UserProfileService;
 import com.ozalp.core.managers.BaseImpl;
 import com.ozalp.organization.business.dtos.requests.CreateGymRequest;
-import com.ozalp.organization.business.dtos.responses.GymSimpleResponse;
+import com.ozalp.organization.business.dtos.responses.OrganizationSimpleResponse;
 import com.ozalp.organization.business.mappers.GymMapper;
 import com.ozalp.organization.business.services.GymService;
 import com.ozalp.organization.dataAccess.GymRepository;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GymImpl extends BaseImpl<Gym> implements GymService {
 
-    private final UserProfileService userProfileService;
     private final GymMapper mapper;
     private final GymRepository repository;
 
@@ -26,14 +24,13 @@ public class GymImpl extends BaseImpl<Gym> implements GymService {
     }
 
     @Override
-    public GymSimpleResponse create(CreateGymRequest request) {
+    public OrganizationSimpleResponse create(CreateGymRequest request) {
         Gym gym = mapper.toEntity(request);
         return mapper.toResponse(repository.save(gym));
     }
 
     @Override
-    public GymSimpleResponse getGymDetail(int id) {
-        Gym gym = findById(id);
-        return mapper.toResponse(gym);
+    public OrganizationSimpleResponse getOrganizationSimpleDetail(int id) {
+        return mapper.toResponse(findById(id));
     }
 }

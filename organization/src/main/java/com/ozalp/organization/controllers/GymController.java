@@ -23,6 +23,6 @@ public class GymController {
 
     @GetMapping(ApiParams.Base.ID)
     ResponseEntity<?> getOrganizationDetail(@PathVariable int id) {
-        return ResponseEntity.ok(gymService.getGymDetail(id));
+        return ResponseEntity.ok(gymService.getOrganizationSimpleDetail(id));
     }
 }

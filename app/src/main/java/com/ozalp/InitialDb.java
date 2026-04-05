@@ -1,13 +1,14 @@
 package com.ozalp;
 
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 import com.ozalp.auth.business.services.AuthService;
 import com.ozalp.auth.models.entities.Auth;
 import com.ozalp.auth.models.entities.UserProfile;
 import com.ozalp.organization.business.services.GymService;
 import com.ozalp.organization.models.entities.Gym;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class InitialDb {

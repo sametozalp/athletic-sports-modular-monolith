@@ -2,7 +2,7 @@ package com.ozalp.membership.business.dtos.responses;
 
 import com.ozalp.auth.business.dtos.responses.UserProfileSimpleResponse;
 import com.ozalp.membership.models.enums.RequestStatus;
-import com.ozalp.organization.business.dtos.responses.GymSimpleResponse;
+import com.ozalp.organization.business.dtos.responses.OrganizationSimpleResponse;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +14,7 @@ public class UserMembershipRequestResponse {
 
     private UserProfileSimpleResponse userProfile;
 
-    private GymSimpleResponse organization;
+    private OrganizationSimpleResponse organization;
 
     private RequestStatus status;
 }

@@ -27,7 +27,7 @@ public class UserMembershipRequestImpl extends BaseImpl<UserMembershipRequest> i
     @Override
     public UserMembershipRequestResponse create(CreateUserMembershipRequestRequest request) {
         UserMembershipRequest userMembershipRequest = mapper.toEntity(request);
-        Organization organization = organizationService.findById(request.getOrganizationId());
+        Organization organization = (Organization) organizationService.findById(request.getOrganizationId());
         UserProfile userProfile = userProfileService.findById(request.getUserProfileId());
         return mapper.toResponse(repository.save(userMembershipRequest), organization, userProfile);
     }

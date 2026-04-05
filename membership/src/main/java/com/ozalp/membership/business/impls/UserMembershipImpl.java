@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserUserMembershipImpl extends BaseImpl<UserMembership> implements UserMembershipService {
+public class UserMembershipImpl extends BaseImpl<UserMembership> implements UserMembershipService {
 
     private final UserMembershipRepository repository;
     private final UserMembershipMapper mapper;
@@ -26,7 +26,7 @@ public class UserUserMembershipImpl extends BaseImpl<UserMembership> implements 
 
     @Override
     public UserMembershipResponse create(CreateUserMembershipRequest request) {
-        Organization organization = organizationService.findById(request.getOrganizationId());
+        Organization organization = (Organization) organizationService.findById(request.getOrganizationId());
         UserProfile userProfile = userProfileService.findById(request.getUserProfileId());
         UserMembership userMembership = mapper.toEntity(request);
         return mapper.toResponse(repository.save(userMembership), organization, userProfile);

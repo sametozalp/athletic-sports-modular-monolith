@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class GymSimpleResponse {
+public class OrganizationSimpleResponse {
 
     private int id;
 
