@@ -6,6 +6,7 @@ import com.ozalp.healthy_eating_tip.business.dtos.requests.CreateHealthyEatingTi
 import com.ozalp.healthy_eating_tip.business.services.HealthyEatingTipService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class HealthyEatingTipController {
 
     @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateHealthyEatingTipRequest request) {
-        return ResponseEntity.ok(healthyEatingTipService.create(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(healthyEatingTipService.create(request));
     }
 
     @GetMapping(ApiParams.Base.RANDOM)

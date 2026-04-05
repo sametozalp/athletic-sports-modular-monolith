@@ -5,6 +5,7 @@ import com.ozalp.training.business.dtos.requests.CreateMealTrainingProgramItemRe
 import com.ozalp.training.business.services.MealTrainingProgramItemService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,6 @@ public class MealTrainingProgramItemController {
 
     @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateMealTrainingProgramItemRequest request) {
-        return ResponseEntity.ok(mealTrainingProgramItemService.create(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(mealTrainingProgramItemService.create(request));
     }
 }

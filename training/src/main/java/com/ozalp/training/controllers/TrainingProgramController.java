@@ -5,6 +5,7 @@ import com.ozalp.training.business.dtos.requests.CreateTrainingProgramRequest;
 import com.ozalp.training.business.services.TrainingProgramService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,6 @@ public class TrainingProgramController {
 
     @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateTrainingProgramRequest request) {
-        return ResponseEntity.ok(trainingProgramService.create(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(trainingProgramService.create(request));
     }
 }

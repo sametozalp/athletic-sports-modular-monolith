@@ -40,5 +40,6 @@ public final class ApiConst {
 
         // SUBSCRIPTION
         public static final String SUBSCRIPTION_PLAN = API + VERSIONS.V1 + "/subscriptionPlan";
+        public static final String ORGANIZATION_SUBSCRIPTION = API + VERSIONS.V1 + "/organizationSubscription";
     }
 }

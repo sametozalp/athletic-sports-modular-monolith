@@ -20,12 +20,12 @@ public class CoachingAssignmentController {
     @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateCoachingAssignmentRequest request) {
         coachingAssignmentService.create(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body("");
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @DeleteMapping(ApiParams.Base.ID)
     ResponseEntity<?> delete(@PathVariable int id) {
         coachingAssignmentService.delete(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

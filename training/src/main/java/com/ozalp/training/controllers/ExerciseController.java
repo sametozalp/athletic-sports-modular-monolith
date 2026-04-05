@@ -6,6 +6,7 @@ import com.ozalp.training.business.dtos.requests.CreateExerciseRequest;
 import com.ozalp.training.business.services.ExerciseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,6 @@ public class ExerciseController {
 
     @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateExerciseRequest request) {
-        return ResponseEntity.ok(exerciseService.create(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(exerciseService.create(request));
     }
 }

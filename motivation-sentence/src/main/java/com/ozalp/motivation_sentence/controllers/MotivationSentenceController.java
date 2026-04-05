@@ -6,6 +6,7 @@ import com.ozalp.motivation_sentence.business.dtos.CreateMotivationSentenceReque
 import com.ozalp.motivation_sentence.business.services.MotivationSentenceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class MotivationSentenceController {
 
     @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateMotivationSentenceRequest request) {
-        return ResponseEntity.ok(motivationSentenceService.create(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(motivationSentenceService.create(request));
     }
 
     @GetMapping(ApiParams.Base.RANDOM)

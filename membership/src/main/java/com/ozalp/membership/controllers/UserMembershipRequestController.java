@@ -5,6 +5,7 @@ import com.ozalp.membership.business.dtos.requests.CreateUserMembershipRequestRe
 import com.ozalp.membership.business.services.UserMembershipRequestService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,6 @@ public class UserMembershipRequestController {
 
     @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateUserMembershipRequestRequest request) {
-        return ResponseEntity.ok(userMembershipRequestService.create(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userMembershipRequestService.create(request));
     }
 }

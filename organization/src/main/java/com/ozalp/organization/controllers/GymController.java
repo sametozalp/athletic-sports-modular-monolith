@@ -6,6 +6,7 @@ import com.ozalp.organization.business.dtos.requests.CreateGymRequest;
 import com.ozalp.organization.business.services.GymService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class GymController {
 
     @PostMapping
     ResponseEntity<?> create(@RequestBody @Valid CreateGymRequest request) {
-        return ResponseEntity.ok(gymService.create(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(gymService.create(request));
     }
 
     @GetMapping(ApiParams.Base.ID)
