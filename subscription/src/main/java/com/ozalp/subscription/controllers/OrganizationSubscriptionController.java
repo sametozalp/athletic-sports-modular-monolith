@@ -1,7 +1,7 @@
 package com.ozalp.subscription.controllers;
 
 import com.ozalp.core.utils.consts.ApiConst;
-import com.ozalp.subscription.business.dtos.requests.CreateSubscriptionPlanRequest;
+import com.ozalp.subscription.business.dtos.requests.CreateOrganizationSubscription;
 import com.ozalp.subscription.business.services.OrganizationSubscriptionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class OrganizationSubscriptionController {
     private final OrganizationSubscriptionService organizationSubscriptionService;
 
     @PostMapping
-    ResponseEntity<?> create(@Valid @RequestBody CreateSubscriptionPlanRequest request) {
+    ResponseEntity<?> create(@Valid @RequestBody CreateOrganizationSubscription request) {
         organizationSubscriptionService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
