@@ -3,5 +3,7 @@ package com.ozalp.subscription.models.enums;
 public enum SubscriptionStatus {
     ACTIVE,
     EXPIRED,
-    CANCELLED
+    CANCELLED,
+    UPGRADED,
+    RENEWED
 }
