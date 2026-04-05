@@ -27,10 +27,10 @@ public final class ApiParams {
 
     }
 
-    public final static class Membership {
+    public final static class UserMembership {
     }
 
-    public final static class MembershipRequest {
+    public final static class UserMembershipRequest {
     }
 
     public final static class MotivationSentence {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(ApiConst.ApiPath.MEMBERSHIP_REQUEST)
+@RequestMapping(ApiConst.ApiPath.USER_MEMBERSHIP_REQUEST)
 public class UserMembershipRequestController {
 
     private final UserMembershipRequestService userMembershipRequestService;

@@ -19,8 +19,8 @@ public final class ApiConst {
         public final static String HEALTHY_EATING_TIP = API + VERSIONS.V1 + "/healthyEatingTip";
 
         // MEMBERSHIP
-        public final static String MEMBERSHIP = API + VERSIONS.V1 + "/membership";
-        public final static String MEMBERSHIP_REQUEST = API + VERSIONS.V1 + "/membershipRequest";
+        public final static String USER_MEMBERSHIP = API + VERSIONS.V1 + "/userMembership";
+        public final static String USER_MEMBERSHIP_REQUEST = API + VERSIONS.V1 + "/userMembershipRequest";
 
         // MOTIVATION SENTENCE
         public final static String MOTIVATION_SENTENCE = API + VERSIONS.V1 + "/motivationSentence";
