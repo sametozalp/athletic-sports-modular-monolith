@@ -1,8 +1,8 @@
 package com.ozalp.subscription.controllers;
 
 import com.ozalp.core.utils.consts.ApiConst;
-import com.ozalp.subscription.business.dtos.requests.CreateSubscriptionPlanRequest;
-import com.ozalp.subscription.business.services.SubscriptionPlanService;
+import com.ozalp.subscription.business.dtos.requests.CreateOrganizationSubscriptionPlanRequest;
+import com.ozalp.subscription.business.services.OrganizationSubscriptionPlanService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(ApiConst.ApiPath.SUBSCRIPTION_PLAN)
 @RequiredArgsConstructor
-public class SubscriptionPlanController {
+public class OrganizationSubscriptionPlanController {
 
-    private final SubscriptionPlanService subscriptionPlanService;
+    private final OrganizationSubscriptionPlanService organizationSubscriptionPlanService;
 
     @PostMapping
-    ResponseEntity<?> create(@Valid @RequestBody CreateSubscriptionPlanRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(subscriptionPlanService.create(request));
+    ResponseEntity<?> create(@Valid @RequestBody CreateOrganizationSubscriptionPlanRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(organizationSubscriptionPlanService.create(request));
     }
 }

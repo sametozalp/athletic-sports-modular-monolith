@@ -3,8 +3,8 @@ package com.ozalp.subscription.business.impls;
 import com.ozalp.core.managers.BaseImpl;
 import com.ozalp.subscription.business.dtos.requests.CreateOrganizationSubscription;
 import com.ozalp.subscription.business.mappers.OrganizationSubscriptionMapper;
+import com.ozalp.subscription.business.services.OrganizationSubscriptionPlanService;
 import com.ozalp.subscription.business.services.OrganizationSubscriptionService;
-import com.ozalp.subscription.business.services.SubscriptionPlanService;
 import com.ozalp.subscription.dataAccess.OrganizationSubscriptionRepository;
 import com.ozalp.subscription.models.entities.OrganizationSubscription;
 import com.ozalp.subscription.models.entities.SubscriptionPlan;
@@ -18,7 +18,7 @@ public class OrganizationSubscriptionImpl extends BaseImpl<OrganizationSubscript
 
     private final OrganizationSubscriptionMapper mapper;
     private final OrganizationSubscriptionRepository repository;
-    private final SubscriptionPlanService subscriptionPlanService;
+    private final OrganizationSubscriptionPlanService subscriptionPlanService;
 
     @Override
     protected JpaRepository<OrganizationSubscription, Integer> getRepository() {

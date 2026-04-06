@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SubscriptionPlanResponse {
+public class OrganizationSubscriptionPlanResponse {
 
     private String name;
 }
